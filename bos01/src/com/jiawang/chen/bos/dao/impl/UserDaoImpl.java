@@ -13,6 +13,13 @@ import com.jiawang.chen.bos.dao.IUserDao;
 import com.jiawang.chen.bos.dao.base.impl.BaseDaoImpl;
 import com.jiawang.chen.bos.entity.User;
 
+/**
+ *<p>标题: UserDaoImpl </p>
+ *<p>描述： </p>
+ *<p>company:</p>
+ * @作者  陈加望
+ *@版本 
+ */
 @Repository
 public class UserDaoImpl extends BaseDaoImpl<User> implements IUserDao {
 

@@ -16,12 +16,11 @@ import com.jiawang.chen.bos.service.IDecidedzoneService;
 import com.jiawang.chen.bos.web.utils.PageBean;
 
 /**
- *<p>±êÌâ: DecidedzoneServiceImpl </p>
- *<p>ÃèÊö£º </p>
+ *<p>æ ‡é¢˜: DecidedzoneServiceImpl </p>
+ *<p>æè¿°ï¼š </p>
  *<p>company:</p>
- * @×÷Õß  ³Â¼ÓÍû
- * @Ê±¼ä  2017Äê2ÔÂ17ÈÕ ÏÂÎç4:34:20
- *@°æ±¾ 
+ * @ä½œè€…  é™ˆåŠ æœ›
+ *@ç‰ˆæœ¬ 
  */
 @Service
 @Transactional
@@ -34,7 +33,6 @@ public class DecidedzoneServiceImpl implements IDecidedzoneService {
 	private ISubareaDao subareaDao;
 	/* 
 	 *
-	 *2017Äê2ÔÂ17ÈÕÏÂÎç4:34:44
 	 */
 	@Override
 	public void add(Decidedzone decidedzone,String[] subareaid) {
@@ -47,7 +45,6 @@ public class DecidedzoneServiceImpl implements IDecidedzoneService {
 
 	/* 
 	 *
-	 *2017Äê2ÔÂ17ÈÕÏÂÎç4:34:44
 	 */
 	@Override
 	public void delete(Decidedzone decidedzone) {
@@ -57,7 +54,6 @@ public class DecidedzoneServiceImpl implements IDecidedzoneService {
 
 	/* 
 	 *
-	 *2017Äê2ÔÂ17ÈÕÏÂÎç4:34:44
 	 */
 	@Override
 	public void edit(Decidedzone decidedzone) {
@@ -66,7 +62,6 @@ public class DecidedzoneServiceImpl implements IDecidedzoneService {
 
 	/* 
 	 *
-	 *2017Äê2ÔÂ17ÈÕÏÂÎç4:34:44
 	 */
 	@Override
 	public void pageQuery(PageBean pageBean) {

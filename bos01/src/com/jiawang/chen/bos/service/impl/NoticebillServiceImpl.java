@@ -22,12 +22,11 @@ import com.jiawang.chen.bos.entity.Workbill;
 import com.jiawang.chen.bos.service.INoticebillService;
 
 /**
- *<p>±êÌâ: NoticebillServiceImpl </p>
- *<p>ÃèÊö£º </p>
+ *<p>æ ‡é¢˜: NoticebillServiceImpl </p>
+ *<p>æè¿°ï¼š </p>
  *<p>company:</p>
- * @×÷Õß  ³Â¼ÓÍû
- * @Ê±¼ä  2017Äê2ÔÂ20ÈÕ ÏÂÎç9:19:02
- *@°æ±¾ 
+ * @ä½œè€…  é™ˆåŠ æœ›
+ *@ç‰ˆæœ¬ 
  */
 @Service
 @Transactional
@@ -42,36 +41,35 @@ public class NoticebillServiceImpl implements INoticebillService{
 	@Resource
 	private IWorkbillDao workbillDao;
 	/* 
-	 *±£´æÒµÎñÍ¨Öªµ¥£¬³¢ÊÔ×Ô¶¯·Öµ¥
-	 *2017Äê2ÔÂ20ÈÕÏÂÎç9:19:34
+	 *ä¿å­˜ä¸šåŠ¡é€šçŸ¥å•ï¼Œå°è¯•è‡ªåŠ¨åˆ†å•
 	 */
 	@Override
 	public void save(Noticebill noticebill) {
 		noticebillDao.save(noticebill);
-		//»ñÈ¡È¡¼şµØÖ·
+		//è·å–å–ä»¶åœ°å€
 		String pickaddress = noticebill.getPickaddress();
-		//¸ù¾İÈ¡¼şµØÖ·²éÑ¯¶¨Çøid---´Ócrm·şÎñ²éÑ¯ 
+		//æ ¹æ®å–ä»¶åœ°å€æŸ¥è¯¢å®šåŒºid---ä»crmæœåŠ¡æŸ¥è¯¢ 
 		String dId = customerService.findDecidedzoneIdByPickaddress(pickaddress);
 		if(dId != null){
-					//²éÑ¯µ½¶¨Çøid£¬¿ÉÒÔ×Ô¶¯·Öµ¥
+					//æŸ¥è¯¢åˆ°å®šåŒºidï¼Œå¯ä»¥è‡ªåŠ¨åˆ†å•
 					Decidedzone decidedzone = decidedzoneDao.get(dId);
 					Staff staff = decidedzone.getStaff();
-					noticebill.setStaff(staff);//ÒµÎñÍ¨Öªµ¥¹ØÁªÆ¥Åäµ½µÄÈ¡ÅÉÔ±
-					noticebill.setOrdertype("×Ô¶¯");//·Öµ¥ÀàĞÍ
-					//ĞèÒªÎªÈ¡ÅÉÔ±´´½¨Ò»¸ö¹¤µ¥
+					noticebill.setStaff(staff);//ä¸šåŠ¡é€šçŸ¥å•å…³è”åŒ¹é…åˆ°çš„å–æ´¾å‘˜
+					noticebill.setOrdertype("è‡ªåŠ¨");//åˆ†å•ç±»å‹
+					//éœ€è¦ä¸ºå–æ´¾å‘˜åˆ›å»ºä¸€ä¸ªå·¥å•
 					Workbill workbill = new Workbill();
-					workbill.setAttachbilltimes(0);//×·µ¥´ÎÊı
-					workbill.setBuildtime(new Timestamp(System.currentTimeMillis()));//¹¤µ¥´´½¨µÄÊ±¼ä
-					workbill.setNoticebill(noticebill);//¹¤µ¥¹ØÁªÒµÎñÍ¨Öªµ¥
-					workbill.setPickstate("Î´È¡¼ş");//È¡¼ş×´Ì¬
-					workbill.setRemark(noticebill.getRemark());//±¸×¢
-					workbill.setStaff(staff);//¹¤µ¥¹ØÁªÈ¡ÅÉÔ±
-					workbill.setType("ĞÂµ¥");
-					workbillDao.save(workbill);//±£´æ¹¤µ¥
-					//µ÷ÓÃ¶ÌĞÅÆ½Ì¨·şÎñ£¬¸øÈ¡ÅÉÔ±·¢ËÍ¶ÌĞÅ
+					workbill.setAttachbilltimes(0);//è¿½å•æ¬¡æ•°
+					workbill.setBuildtime(new Timestamp(System.currentTimeMillis()));//å·¥å•åˆ›å»ºçš„æ—¶é—´
+					workbill.setNoticebill(noticebill);//å·¥å•å…³è”ä¸šåŠ¡é€šçŸ¥å•
+					workbill.setPickstate("æœªå–ä»¶");//å–ä»¶çŠ¶æ€
+					workbill.setRemark(noticebill.getRemark());//å¤‡æ³¨
+					workbill.setStaff(staff);//å·¥å•å…³è”å–æ´¾å‘˜
+					workbill.setType("æ–°å•");
+					workbillDao.save(workbill);//ä¿å­˜å·¥å•
+					//è°ƒç”¨çŸ­ä¿¡å¹³å°æœåŠ¡ï¼Œç»™å–æ´¾å‘˜å‘é€çŸ­ä¿¡
 				}else{
-					//Ã»ÓĞ²éÑ¯µ½¶¨Çøid£¬×ªÎªÈË¹¤·Öµ¥
-					noticebill.setOrdertype("ÈË¹¤");
+					//æ²¡æœ‰æŸ¥è¯¢åˆ°å®šåŒºidï¼Œè½¬ä¸ºäººå·¥åˆ†å•
+					noticebill.setOrdertype("äººå·¥");
 		}
 	}
 }

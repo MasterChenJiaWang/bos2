@@ -7,12 +7,19 @@ import java.util.List;
 
 import org.hibernate.criterion.DetachedCriteria;
 
+/**
+ *<p>标题: PageBean </p>
+ *<p>描述： </p>
+ *<p>company:</p>
+ * @作者  陈加望
+ *@版本 
+ */
 public class PageBean {
-	private int currentPage;//��ǰҳ��
-	private int pageSize;//ÿҳ��ʾ����
-	private int total=0;//�ܼ�¼��
-	private DetachedCriteria detachedCriteria;//���߲�ѯ����
-	private List rows;//��ǰҳ��Ҫչʾ�����ݼ���
+	private int currentPage;//当前页面
+	private int pageSize;//每页显示数量
+	private int total=0;//总记录数
+	private DetachedCriteria detachedCriteria;//离线查询对象
+	private List rows;//当前页需要展示的数据集合
 	/**
 	 * @return currentPage
 	 */
@@ -20,7 +27,7 @@ public class PageBean {
 		return currentPage;
 	}
 	/**
-	 * @param currentPage Ҫ���õ� currentPage
+	 * @param currentPage 要设置的 currentPage
 	 */
 	public void setCurrentPage(int currentPage) {
 		this.currentPage = currentPage;
@@ -32,7 +39,7 @@ public class PageBean {
 		return pageSize;
 	}
 	/**
-	 * @param pageSize Ҫ���õ� pageSize
+	 * @param pageSize 要设置的 pageSize
 	 */
 	public void setPageSize(int pageSize) {
 		this.pageSize = pageSize;
@@ -44,7 +51,7 @@ public class PageBean {
 		return total;
 	}
 	/**
-	 * @param total Ҫ���õ� total
+	 * @param total 要设置的 total
 	 */
 	public void setTotal(int total) {
 		this.total = total;
@@ -56,7 +63,7 @@ public class PageBean {
 		return detachedCriteria;
 	}
 	/**
-	 * @param detachedCriteria Ҫ���õ� detachedCriteria
+	 * @param detachedCriteria 要设置的 detachedCriteria
 	 */
 	public void setDetachedCriteria(DetachedCriteria detachedCriteria) {
 		this.detachedCriteria = detachedCriteria;
@@ -68,7 +75,7 @@ public class PageBean {
 		return rows;
 	}
 	/**
-	 * @param rows Ҫ���õ� rows
+	 * @param rows 要设置的 rows
 	 */
 	public void setRows(List rows) {
 		this.rows = rows;

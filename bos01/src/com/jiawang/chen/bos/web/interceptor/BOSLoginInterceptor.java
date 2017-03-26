@@ -10,18 +10,16 @@ import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.MethodFilterInterceptor;
 
 /**
- *<p>±êÌâ: BOSLoginInterceptor </p>
- *<p>ÃèÊö£º </p>
+ *<p>æ ‡é¢˜: BOSLoginInterceptor </p>
+ *<p>æè¿°ï¼š </p>
  *<p>company:</p>
- * @×÷Õß  ³Â¼ÓÍû
- * @Ê±¼ä  2017Äê2ÔÂ15ÈÕ ÏÂÎç1:38:00
- *@°æ±¾ 
+ * @ä½œè€…  é™ˆåŠ æœ›
+ *@ç‰ˆæœ¬ 
  */
 public class BOSLoginInterceptor extends MethodFilterInterceptor {
 
 	/* 
-	 *À¹½Ø·½·¨
-	 *2017Äê2ÔÂ15ÈÕÏÂÎç1:43:20
+	 *æ‹¦æˆªæ–¹æ³•
 	 */
 	@Override
 	protected String doIntercept(ActionInvocation invocation) throws Exception {
@@ -30,7 +28,7 @@ public class BOSLoginInterceptor extends MethodFilterInterceptor {
 		if(user==null){
 			return "login";
 		}else{
-			return invocation.invoke();// ·ÅĞĞ
+			return invocation.invoke();// æ”¾è¡Œ
 		}
 		
 	}

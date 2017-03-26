@@ -19,12 +19,11 @@ import com.jiawang.chen.bos.web.utils.BOSContext;
 import com.jiawang.chen.bos.web.utils.PageBean;
 
 /**
- *<p>±êÌâ: FunctionServiceImpl </p>
- *<p>ÃèÊö£º </p>
+ *<p>æ ‡é¢˜: FunctionServiceImpl </p>
+ *<p>æè¿°ï¼š </p>
  *<p>company:</p>
- * @×÷Õß  ³Â¼ÓÍû
- * @Ê±¼ä  2017Äê2ÔÂ20ÈÕ ÏÂÎç10:47:46
- *@°æ±¾ 
+ * @ä½œè€…  é™ˆåŠ æœ›
+ *@ç‰ˆæœ¬ 
  */
 @Service
 @Transactional
@@ -32,19 +31,13 @@ public class FunctionServiceImpl implements IFunctionService{
 
 	@Resource
 	private IFunctionDao functionDao;
-	/* 
-	 *
-	 *2017Äê2ÔÂ20ÈÕÏÂÎç10:48:06
-	 */
+	
 	@Override
 	public void pageQuery(PageBean pageBean) {
 		functionDao.pageQuery(pageBean);
 		
 	}
-	/* 
-	 *
-	 *2017Äê2ÔÂ20ÈÕÏÂÎç10:59:39
-	 */
+
 	@Override
 	public List<Function> findAll() {
 		
@@ -52,9 +45,8 @@ public class FunctionServiceImpl implements IFunctionService{
 		return list;
 	}
 	/* 
-	 *model  Îª±íÏÖ²ã´«¹ıÀ´µÄÊı¾İ
+	 *model  ä¸ºè¡¨ç°å±‚ä¼ è¿‡æ¥çš„æ•°æ®
 	 *function2 Îªfunction
-	 *2017Äê2ÔÂ20ÈÕÏÂÎç11:24:13
 	 */
 	@Override
 	public void add(Function model) {
@@ -67,7 +59,6 @@ public class FunctionServiceImpl implements IFunctionService{
 	}
 	/* 
 	 *
-	 *2017Äê2ÔÂ21ÈÕÉÏÎç9:22:55
 	 */
 	@Override
 	public List<Function> findMenu() {

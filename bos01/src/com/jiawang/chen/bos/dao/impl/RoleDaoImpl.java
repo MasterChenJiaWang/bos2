@@ -10,12 +10,11 @@ import com.jiawang.chen.bos.dao.base.impl.BaseDaoImpl;
 import com.jiawang.chen.bos.entity.Role;
 
 /**
- *<p>±êÌâ: RoleDaoImpl </p>
- *<p>ÃèÊö£º </p>
+ *<p>æ ‡é¢˜: RoleDaoImpl </p>
+ *<p>æè¿°ï¼š </p>
  *<p>company:</p>
- * @×÷Õß  ³Â¼ÓÍû
- * @Ê±¼ä  2017Äê2ÔÂ20ÈÕ ÏÂÎç11:38:02
- *@°æ±¾ 
+ * @ä½œè€…  é™ˆåŠ æœ›
+ *@ç‰ˆæœ¬ 
  */
 @Repository
 public class RoleDaoImpl extends BaseDaoImpl<Role> implements IRoleDao{

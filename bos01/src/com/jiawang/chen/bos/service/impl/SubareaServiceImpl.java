@@ -23,12 +23,11 @@ import com.jiawang.chen.bos.service.ISubareaService;
 import com.jiawang.chen.bos.web.utils.PageBean;
 
 /**
- *<p>����: SubareaServiceImpl </p>
- *<p>������ </p>
+ *<p>标题: SubareaServiceImpl </p>
+ *<p>描述： </p>
  *<p>company:</p>
- * @����  �¼���
- * @ʱ��  2017��2��17�� ����9:32:16
- *@�汾 
+ * @作者  陈加望
+ *@版本 
  */
 @Service
 @Transactional
@@ -38,7 +37,6 @@ public class SubareaServiceImpl implements ISubareaService {
 	private ISubareaDao subareaDao;
 	/* 
 	 *
-	 *2017��2��17������9:36:14
 	 */
 	@Override
 	public void add(Subarea subarea) {
@@ -47,7 +45,6 @@ public class SubareaServiceImpl implements ISubareaService {
 
 	/* 
 	 *
-	 *2017��2��17������9:36:14
 	 */
 	@Override
 	public void edit(Subarea subarea) {
@@ -56,7 +53,6 @@ public class SubareaServiceImpl implements ISubareaService {
 
 	/* 
 	 *
-	 *2017��2��17������9:36:14
 	 */
 	@Override
 	public void delete(Subarea subarea) {
@@ -65,7 +61,6 @@ public class SubareaServiceImpl implements ISubareaService {
 
 	/* 
 	 *
-	 *2017��2��17������9:36:14
 	 */
 	@Override
 	public void pageQuery(PageBean pageBean) {
@@ -74,7 +69,6 @@ public class SubareaServiceImpl implements ISubareaService {
 
 	/* 
 	 *
-	 *2017��2��17������10:06:59
 	 */
 	@Override
 	public List<Subarea> findAll() {

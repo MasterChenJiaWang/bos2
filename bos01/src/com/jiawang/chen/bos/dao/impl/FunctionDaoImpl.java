@@ -13,15 +13,18 @@ import com.jiawang.chen.bos.dao.base.impl.BaseDaoImpl;
 import com.jiawang.chen.bos.entity.Function;
 
 /**
- *<p>����: FunctionDaoImpl </p>
- *<p>������ </p>
+ *<p>标题: FunctionDaoImpl </p>
+ *<p>描述： </p>
  *<p>company:</p>
- * @����  �¼���
- *@�汾 
+ * @作者  陈加望
+ *@版本 
  */
 @Repository
 public class FunctionDaoImpl extends BaseDaoImpl<Function> implements IFunctionDao{
 
+	/* 
+	 *根据用户id 查询对应的权限
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Function> findListByUserid(String userid) {
@@ -37,6 +40,9 @@ public class FunctionDaoImpl extends BaseDaoImpl<Function> implements IFunctionD
 		return list;
 	}
 
+	/* 
+	 *查询所有的菜单
+	 */
 	@Override
 	public List<Function> findAllMenu() {
     
@@ -49,6 +55,9 @@ public class FunctionDaoImpl extends BaseDaoImpl<Function> implements IFunctionD
 		return  null; 
 	}
 
+	/* 
+	 *根据用户id查询对应的菜单
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Function> findMenuByUserid(String id) {

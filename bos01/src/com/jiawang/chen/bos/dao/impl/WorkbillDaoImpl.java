@@ -10,12 +10,11 @@ import com.jiawang.chen.bos.dao.base.impl.BaseDaoImpl;
 import com.jiawang.chen.bos.entity.Workbill;
 
 /**
- *<p>±êÌâ: WorkbillDaoImpl </p>
- *<p>ÃèÊö£º </p>
+ *<p>æ ‡é¢˜: WorkbillDaoImpl </p>
+ *<p>æè¿°ï¼š </p>
  *<p>company:</p>
- * @×÷Õß  ³Â¼ÓÍû
- * @Ê±¼ä  2017Äê2ÔÂ20ÈÕ ÏÂÎç9:34:22
- *@°æ±¾ 
+ * @ä½œè€…  é™ˆåŠ æœ›
+ *@ç‰ˆæœ¬ 
  */
 @Repository
 public class WorkbillDaoImpl extends BaseDaoImpl<Workbill> implements IWorkbillDao{

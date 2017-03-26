@@ -13,12 +13,11 @@ import org.hibernate.criterion.DetachedCriteria;
 import com.jiawang.chen.bos.web.utils.PageBean;
 
 /**
- *<p>����: IBaseDao </p>
- *<p>������ </p>
+ *<p>标题: IBaseDao </p>
+ *<p>描述： </p>
  *<p>company:</p>
- * @����  �¼���
- * @ʱ��  2017��2��15�� ����1:47:36
- *@�汾 
+ * @作者  陈加望
+ *@版本 
  */
 public interface IBaseDao<T> {
 
@@ -49,7 +48,6 @@ public interface IBaseDao<T> {
 	public List findBySql(Class transFormClass, String sql, Map<String, Object> params);
 	
 
-	//��ҳ
 	public List<T> find(String hql, int page, int rows);
 	
 	public List<T> find(String hql,  int page, int rows,Map<String, Object> params);
@@ -66,7 +64,6 @@ public interface IBaseDao<T> {
 	public int executeHql(String hql);//ִ��һ��HQL���
 	public int executeHql(String hql, Map<String, Object> params);
 	
-	//��ý����
 	public List<Object[]> findBySql(String sql);
 	public List<Object[]> findBySql(String sql, int page, int rows);
 	public List<Object[]> findBySql(String sql, Map<String, Object> params);
@@ -74,7 +71,6 @@ public interface IBaseDao<T> {
 	public List<T> sqlFind(String hql, int page, int rows, Map<String, Object> params);
 	
 	
-	//ͳ��
 	public long countBySql(String sql);
 	public long countBySql(String sql, Map<String, Object> params);
 	

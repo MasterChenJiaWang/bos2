@@ -10,12 +10,11 @@ import com.jiawang.chen.bos.dao.base.impl.BaseDaoImpl;
 import com.jiawang.chen.bos.entity.Workordermanage;
 
 /**
- *<p>±êÌâ: WorkordermanageDaoImpl </p>
- *<p>ÃèÊö£º </p>
+ *<p>æ ‡é¢˜: WorkordermanageDaoImpl </p>
+ *<p>æè¿°ï¼š </p>
  *<p>company:</p>
- * @×÷Õß  ³Â¼ÓÍû
- * @Ê±¼ä  2017Äê2ÔÂ21ÈÕ ÏÂÎç1:41:09
- *@°æ±¾ 
+ * @ä½œè€…  é™ˆåŠ æœ›
+ *@ç‰ˆæœ¬ 
  */
 @Repository
 public class WorkordermanageDaoImpl  extends BaseDaoImpl<Workordermanage> implements IWorkordermanageDao{

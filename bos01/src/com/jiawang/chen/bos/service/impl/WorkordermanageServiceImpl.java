@@ -23,11 +23,11 @@ import com.jiawang.chen.bos.entity.Workordermanage;
 import com.jiawang.chen.bos.service.IWorkordermanageService;
 
 /**
- *<p>����: WorkordermanageServiceImpl </p>
- *<p>������ </p>
+ *<p>标题: WorkordermanageServiceImpl </p>
+ *<p>描述： </p>
  *<p>company:</p>
- * @����  �¼���
- *@�汾 
+ * @作者  陈加望
+ *@版本 
  */
 @Service
 @Transactional
@@ -62,11 +62,11 @@ public class WorkordermanageServiceImpl  implements IWorkordermanageService{
 	@Override
 	public void start(String id) {
 		Workordermanage workordermanage = workordermanageDao.get(id);
-		workordermanage.setStart("1");//������
-		String processDefinitionKey="transfer";//���̶���key
-		String businessKey=id;//ҵ������ ������������ҵ���������������ֵ
-		Map<String, Object> map = new HashMap<String,Object>();//���̱���
-		map.put("ҵ������", workordermanage);
+		workordermanage.setStart("1");//已启动
+		String processDefinitionKey="transfer";//流程定义key
+		String businessKey=id;//业务主键 。。。。等于业务表（工作单）主键值
+		Map<String, Object> map = new HashMap<String,Object>();//流程变量
+		map.put("业务数据", workordermanage);
 		runtimeService.startProcessInstanceByKey(processDefinitionKey, businessKey,map);
 	}
 	/* 
@@ -79,7 +79,6 @@ public class WorkordermanageServiceImpl  implements IWorkordermanageService{
 	}
 	/* 
 	 *
-	 *2017��2��21������2:21:43
 	 */
 	@Override
 	public Workordermanage findById(String workordermanageId) {
@@ -89,25 +88,24 @@ public class WorkordermanageServiceImpl  implements IWorkordermanageService{
 	}
 	/* 
 	 *
-	 *2017��2��21������2:24:03
 	 */
 	@Override
 	public void checkWorkordermanage(String taskId, Integer check, String workordermanageId) {
-		//�����˲�ͨ�����޸Ĺ�����startΪ0
-		Workordermanage workordermanage = workordermanageDao.get(workordermanageId);
-		//��˲�ͨ��
-		//ɾ����ʷ����ʵ������
-		Task task = taskService.createTaskQuery().taskId(taskId).singleResult();
-		//������������ѯ����ʵ��Id
-		Map<String, Object> variables = new HashMap<String,Object>();
-		variables.put("check", check);
-		//������˹���������
-		String processInstanceId = task.getProcessInstanceId();
-		taskService.complete(taskId, variables);
-		if(check==0){
-			workordermanage.setStart("0");
-			historyService.deleteHistoricProcessInstance(processInstanceId);
-		}
-	}
+		//如果审核不通过，修改工作单start为0
+				Workordermanage workordermanage = workordermanageDao.get(workordermanageId);
+				//审核不通过
+				//删除历史流程实例数据
+				Task task = taskService.createTaskQuery().taskId(taskId).singleResult();
+				//根据任务对象查询流程实例Id
+				Map<String, Object> variables = new HashMap<String,Object>();
+				variables.put("check", check);
+				//办理审核工作单任务
+				String processInstanceId = task.getProcessInstanceId();
+				taskService.complete(taskId, variables);
+				if(check==0){
+					workordermanage.setStart("0");
+					historyService.deleteHistoricProcessInstance(processInstanceId);
+				}
+			}
 
 }

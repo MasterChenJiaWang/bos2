@@ -24,6 +24,13 @@ import com.jiawang.chen.bos.entity.Function;
 import com.jiawang.chen.bos.entity.User;
 import com.jiawang.chen.bos.web.action.DecidedzoneAction;
 
+/**
+ *<p>标题: BOSRealm </p>
+ *<p>描述： </p>
+ *<p>company:</p>
+ * @作者  陈加望
+ *@版本 
+ */
 public class BOSRealm extends AuthorizingRealm {
 
 	@Resource
@@ -34,13 +41,16 @@ public class BOSRealm extends AuthorizingRealm {
 	
 	private static final Logger logger = Logger.getLogger(BOSRealm.class);
 	
+	/* 
+	 *授权方法
+	 */
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
 	
 		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-//		info.addStringPermission("staff");//Ϊ��ǰ�û�����staffȨ��
-//		//TODO ���ݵ�ǰ��¼�û���ѯ���ݿ⣬��ȡ���Ӧ��Ȩ������
-//		info.addRole("staff");//Ϊ��ǰ�û�����staff��ɫ
+//		info.addStringPermission("staff");//为当前用户授予staff权限
+//		//TODO 根据当前登录用户查询数据库，获取其对应的权限数据
+//		info.addRole("staff");//为当前用户授予staff角色
 		
 		User user=(User)principals.getPrimaryPrincipal();
 		List<Function> list=null;
@@ -58,35 +68,34 @@ public class BOSRealm extends AuthorizingRealm {
 
 	}
 
-	
 	/* 
-	 * ��֤����
+	 * 认证方法
 	 */
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 
-		logger.info("��֤������������");
+		logger.info("认证方法。。。。");
 		UsernamePasswordToken upToken=(UsernamePasswordToken)token;
-		String username = upToken.getUsername();//�������л���û���
+		String username = upToken.getUsername();//从令牌中获得用户名
 		
-		logger.info("�����е��û���"+username);
+		logger.info("令牌中的用户名"+username);
 		
-		User user = userDao.findUserByUsername(username);// �������л���û���
+		User user = userDao.findUserByUsername(username);// 从令牌中获得用户名
 		if (user == null) {
-			// �û���������
+			// 用户名不存在
 			return null;
 		} else {
-			// �û�������
-			String password = user.getPassword();// ������ݿ��д洢������
-			// ��������֤��Ϣ����
+			// 用户名存在
+			String password = user.getPassword();// 获得数据库中存储的密码
+			// 创建简单认证信息对象
 			/***
-			 * ����һ��ǩ�����������������λ�û�ȡ��ǰ����Ķ���
-			 * �������������ݿ��в�ѯ��������
-			 * ����������ǰrealm������
+			 * 参数一：签名，程序可以在任意位置获取当前放入的对象
+			 * 参数二：从数据库中查询出的密码
+			 * 参数三：当前realm的名称
 			 */
 			SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(user,
 					password, this.getClass().getSimpleName());
-			return info;//���ظ���ȫ���������ɰ�ȫ����������ȶ����ݿ��в�ѯ���������ҳ���ύ������
+			return info;//返回给安全管理器，由安全管理器负责比对数据库中查询出的密码和页面提交的密码
 		}	
 	}
 

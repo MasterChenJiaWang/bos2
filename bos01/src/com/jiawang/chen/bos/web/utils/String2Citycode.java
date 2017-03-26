@@ -6,12 +6,11 @@ package com.jiawang.chen.bos.web.utils;
 import org.apache.commons.lang3.StringUtils;
 
 /**
- *<p>±êÌâ: String2Citycode </p>
- *<p>ÃèÊö£ºÉú³É³ÇÊĞ¼òÂë ºÍ³ÇÊĞÂë </p>
+ *<p>æ ‡é¢˜: String2Citycode </p>
+ *<p>æè¿°ï¼šç”ŸæˆåŸå¸‚ç®€ç  å’ŒåŸå¸‚ç  </p>
  *<p>company:</p>
- * @×÷Õß  ³Â¼ÓÍû
- * @Ê±¼ä  2017Äê2ÔÂ16ÈÕ ÏÂÎç12:36:37
- *@°æ±¾ 
+ * @ä½œè€…  é™ˆåŠ æœ›
+ *@ç‰ˆæœ¬ 
  */
 public class String2Citycode {
 
@@ -26,7 +25,6 @@ public class String2Citycode {
 	/**
 	 * 
 	 * 
-	 *@Ê±¼ä 2017Äê2ÔÂ16ÈÕ ÏÂÎç12:44:46
 	 */
 	public String string2Shortcode(String city,String province,String district){
 		city=city.substring(0, city.length()-1);

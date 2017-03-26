@@ -14,12 +14,11 @@ import com.jiawang.chen.bos.dao.base.impl.BaseDaoImpl;
 import com.jiawang.chen.bos.entity.Region;
 
 /**
- *<p>����: RegionDaoImpl </p>
- *<p>������ </p>
+ *<p>标题: RegionDaoImpl </p>
+ *<p>描述： </p>
  *<p>company:</p>
- * @����  �¼���
- * @ʱ��  2017��2��16�� ����10:23:40
- *@�汾 
+ * @作者  陈加望
+ *@版本 
  */
 @Repository
 public class RegionDaoImpl extends BaseDaoImpl<Region> implements IRegionDao {

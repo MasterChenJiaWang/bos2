@@ -10,12 +10,11 @@ import com.jiawang.chen.bos.dao.base.impl.BaseDaoImpl;
 import com.jiawang.chen.bos.entity.Decidedzone;
 
 /**
- *<p>±êÌâ: DecidedzoneDaoImpl </p>
- *<p>ÃèÊö£º </p>
+ *<p>æ ‡é¢˜: DecidedzoneDaoImpl </p>
+ *<p>æè¿°ï¼š </p>
  *<p>company:</p>
- * @×÷Õß  ³Â¼ÓÍû
- * @Ê±¼ä  2017Äê2ÔÂ17ÈÕ ÏÂÎç4:36:33
- *@°æ±¾ 
+ * @ä½œè€…  é™ˆåŠ æœ›
+ *@ç‰ˆæœ¬ 
  */
 @Repository
 public class DecidedzoneDaoImpl extends BaseDaoImpl<Decidedzone> implements IDecidedzoneDao {

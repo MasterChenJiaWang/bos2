@@ -21,6 +21,13 @@ import com.jiawang.chen.bos.service.IUserService;
 import com.jiawang.chen.bos.web.utils.MD5Utils;
 import com.jiawang.chen.bos.web.utils.PageBean;
 
+/**
+ *<p>标题: UserServiceImpl </p>
+ *<p>描述： </p>
+ *<p>company:</p>
+ * @作者  陈加望
+ *@版本 
+ */
 @Service
 @Transactional
 public class UserServiceImpl implements IUserService {
@@ -42,14 +49,14 @@ public class UserServiceImpl implements IUserService {
 		return userDao.loginByUserAndPassword(username, password);
 	}
 	/* 
-	 *�޸�����
+	*修改密码
 	 */
 	@Override
 	public void editpassword(String password, String id) {
 		userDao.executeUpdate("editPassword",password,id);
 	}
 	/* 
-	 *����һ���û�  ͬ����activiti��act_id_user  act_id_membership
+	 *保存一个用户  同步到activiti的act_id_user  act_id_membership
 	 */
 	public void save(User user, String[] roleIds) {
 		String password = user.getPassword();
@@ -57,17 +64,17 @@ public class UserServiceImpl implements IUserService {
 		user.setPassword(password);
 		userDao.save(user);//�־ö��� 
 //		for (String roleId : roleIds) {
-//			Role role = new Role(roleId);
-//			//�û�������ɫ
-//			user.getRoles().add(role);
-//		}
+//		Role role = new Role(roleId);
+//		//用户关联角色
+//		user.getRoles().add(role);
+//	}
 		
 		org.activiti.engine.identity.User actUser = new UserEntity(user.getId());
 		
 		identityService.saveUser(actUser);
 		for (String roleId : roleIds) {
 			Role role = roleDao.get(roleId);
-			//�û�������ɫ
+			//用户关联角色
 			user.getRoles().add(role);
 			identityService.createMembership(actUser.getId(), role.getName());
 		}
@@ -91,8 +98,8 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public void add(User model) {
 		String username = model.getUsername();
-		String password = model.getPassword();//����
-		password = MD5Utils.md5(password);//md5����
+		String password = model.getPassword();//明文
+		password = MD5Utils.md5(password);//md5加密
 		model.setPassword(password);
 		userDao.save(model);
 	}
@@ -102,8 +109,8 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public User login(User model) {
 		String username = model.getUsername();
-		String password = model.getPassword();//����
-		password = MD5Utils.md5(password);//md5����
+		String password = model.getPassword();//明文
+		password = MD5Utils.md5(password);//md5加密
 		return userDao.loginByUserAndPassword(username,password);
 	}
 

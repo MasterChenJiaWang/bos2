@@ -8,11 +8,11 @@ import org.apache.struts2.ServletActionContext;
 import com.jiawang.chen.bos.entity.User;
 
 /**
- *<p>����: BOSContext </p>
- *<p>������ </p>
+ *<p>标题: BOSContext </p>
+ *<p>描述： </p>
  *<p>company:</p>
- * @����  �¼���
- *@�汾 
+ * @作者  陈加望
+ *@版本 
  */
 public class BOSContext {
 

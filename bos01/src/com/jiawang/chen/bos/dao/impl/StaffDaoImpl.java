@@ -10,12 +10,11 @@ import com.jiawang.chen.bos.dao.base.impl.BaseDaoImpl;
 import com.jiawang.chen.bos.entity.Staff;
 
 /**
- *<p>±êÌâ: StaffDaoImpl </p>
- *<p>ÃèÊö£º </p>
+ *<p>æ ‡é¢˜: StaffDaoImpl </p>
+ *<p>æè¿°ï¼š </p>
  *<p>company:</p>
- * @×÷Õß  ³Â¼ÓÍû
- * @Ê±¼ä  2017Äê2ÔÂ15ÈÕ ÏÂÎç6:59:16
- *@°æ±¾ 
+ * @ä½œè€…  é™ˆåŠ æœ›
+ *@ç‰ˆæœ¬ 
  */
 @Repository
 public class StaffDaoImpl extends BaseDaoImpl<Staff> implements IStaffDao {

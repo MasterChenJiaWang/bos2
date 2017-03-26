@@ -20,12 +20,11 @@ import com.jiawang.chen.bos.service.IRoleService;
 import com.jiawang.chen.bos.web.utils.PageBean;
 
 /**
- *<p>±êÌâ: RoleServiceImpl </p>
- *<p>ÃèÊö£º </p>
+ *<p>æ ‡é¢˜: RoleServiceImpl </p>
+ *<p>æè¿°ï¼š </p>
  *<p>company:</p>
- * @×÷Õß  ³Â¼ÓÍû
- * @Ê±¼ä  2017Äê2ÔÂ20ÈÕ ÏÂÎç11:36:25
- *@°æ±¾ 
+ * @ä½œè€…  é™ˆåŠ æœ›
+ *@ç‰ˆæœ¬ 
  */
 @Service
 @Transactional
@@ -37,7 +36,6 @@ public class RoleServiceImpl  implements IRoleService{
 	private IdentityService IdentityService;
 	/* 
 	 *
-	 *2017Äê2ÔÂ20ÈÕÏÂÎç11:36:51
 	 */
 	@Override
 	public void add(Role model,String ids) {
@@ -45,22 +43,21 @@ public class RoleServiceImpl  implements IRoleService{
 //		String[] functionIds = ids.split(",");
 //		for(String fid:functionIds){
 //			Function function = new Function(fid);
-//			//½ÇÉ«¹ØÁª
+//			//è§’è‰²å…³è”
 //			model.getFunctions().add(function);
 //		}
-		//Ê¹ÓÃ½ÇÉ«µÄÃû³Æ×÷Îª×éµÄid
+		//ä½¿ç”¨è§’è‰²çš„åç§°ä½œä¸ºç»„çš„id
 		Group group = new GroupEntity(model.getName());
 		IdentityService.saveGroup(group);
 		String[] functionIds = ids.split(",");
 		for(String fid:functionIds){
 			Function function = new Function(fid);
-			//½ÇÉ«¹ØÁª
+			//è§’è‰²å…³è”
 			model.getFunctions().add(function);
 		}
 	}
 	/* 
 	 *
-	 *2017Äê2ÔÂ20ÈÕÏÂÎç11:49:02
 	 */
 	@Override
 	public List<Role> findAll() {
@@ -69,7 +66,6 @@ public class RoleServiceImpl  implements IRoleService{
 	}
 	/* 
 	 *
-	 *2017Äê2ÔÂ20ÈÕÏÂÎç11:49:02
 	 */
 	@Override
 	public void pageQuery(PageBean pageBean) {
@@ -80,7 +76,6 @@ public class RoleServiceImpl  implements IRoleService{
 //	/**
 //	 * 
 //	 * 
-//	 *@Ê±¼ä 2017Äê2ÔÂ21ÈÕ ÉÏÎç11:07:47
 //	 */
 //	public void save(Role role,String ids){
 //		

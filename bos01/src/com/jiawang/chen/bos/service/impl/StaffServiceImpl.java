@@ -24,12 +24,11 @@ import com.jiawang.chen.bos.web.action.StaffAction;
 import com.jiawang.chen.bos.web.utils.PageBean;
 
 /**
- *<p>����: StaffServiceImpl </p>
- *<p>������ </p>
+ *<p>标题: StaffServiceImpl </p>
+ *<p>描述： </p>
  *<p>company:</p>
- * @����  �¼���
- * @ʱ��  2017��2��15�� ����7:07:09
- *@�汾 
+ * @作者  陈加望
+ *@版本 
  */
 @Service
 @Transactional
@@ -40,40 +39,36 @@ public class StaffServiceImpl implements IStaffService{
 	private IStaffDao staffDao;
 	/* 
 	 *
-	 *2017��2��15������7:07:21
 	 */
 	@Override
 	public void save(Staff staff) {
-		logger.info("service-->>>>>ȡ��Ա���ڱ���----");
+		logger.info("service-->>>>>取派员正在保存----");
 		staffDao.save(staff);
-		logger.info("service-->>>>>ȡ��Ա����ɹ�----");
+		logger.info("service-->>>>>取派员保存成功----");
 	}
 
 	/* 
 	 *
-	 *2017��2��15������7:07:21
 	 */
 	@Override
 	public void update(Staff staff) {
-		logger.info("service-->>>>>ȡ��Ա�����޸�----");
+		logger.info("service-->>>>>取派员正在修改----");
 		staffDao.update(staff);
-		logger.info("service-->>>>>ȡ��Ա�޸ĳɹ�----");
+		logger.info("service-->>>>>取派员修改成功----");
 	}
 
 	/* 
 	 *
-	 *2017��2��15������7:07:21
 	 */
 	@Override
 	public void delete(Staff staff) {
-		logger.info("service-->>>>>ȡ��Աɾ��----");
+		logger.info("service-->>>>>取派员删除----");
 		staffDao.delete(staff);
-		logger.info("service-->>>>>ȡ��Աɾ���ɹ�----");
+		logger.info("service-->>>>>取派员删除成功----");
 	}
 
 	/* 
 	 *
-	 *2017��2��15������7:07:21
 	 */
 	@Override
 	public void pageQuery(PageBean pageBean) {
@@ -82,7 +77,6 @@ public class StaffServiceImpl implements IStaffService{
 
 	/* 
 	 *
-	 *2017��2��15������7:07:21
 	 */
 	@Override
 	public void deleteBatch(String ids) {
@@ -97,7 +91,6 @@ public class StaffServiceImpl implements IStaffService{
 
 	/* 
 	 *
-	 *2017��2��15������7:07:21
 	 */
 	@Override
 	public Staff findById(String id) {
@@ -107,8 +100,7 @@ public class StaffServiceImpl implements IStaffService{
 	}
 
 	/* 
-	 *��ԭ
-	 *2017��2��16������2:54:05
+	 *还原
 	 */
 	@Override
 	public void restoreBatch(String ids) {
@@ -125,6 +117,9 @@ public class StaffServiceImpl implements IStaffService{
 		}
 	}
 
+	/* 
+	 *查询没有作废的取派员 
+	 */
 	@Override
 	public List<Staff> findNotDelete() {
 		

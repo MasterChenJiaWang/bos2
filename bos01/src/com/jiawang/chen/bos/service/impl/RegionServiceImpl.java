@@ -16,12 +16,11 @@ import com.jiawang.chen.bos.service.IRegionService;
 import com.jiawang.chen.bos.web.utils.PageBean;
 
 /**
- *<p>±êÌâ: RegionServiceImpl </p>
- *<p>ÃèÊö£º </p>
+ *<p>æ ‡é¢˜: RegionServiceImpl </p>
+ *<p>æè¿°ï¼š </p>
  *<p>company:</p>
- * @×÷Õß  ³Â¼ÓÍû
- * @Ê±¼ä  2017Äê2ÔÂ16ÈÕ ÉÏÎç11:22:59
- *@°æ±¾ 
+ * @ä½œè€…  é™ˆåŠ æœ›
+ *@ç‰ˆæœ¬ 
  */
 @Service
 @Transactional
@@ -31,7 +30,6 @@ public class RegionServiceImpl implements IRegionService{
 	private IRegionDao regionDao;
 	/* 
 	 *
-	 *2017Äê2ÔÂ16ÈÕÉÏÎç11:35:06
 	 */
 	@Override
 	public void save(Region region) {
@@ -41,7 +39,6 @@ public class RegionServiceImpl implements IRegionService{
 
 	/* 
 	 *
-	 *2017Äê2ÔÂ16ÈÕÉÏÎç11:35:06
 	 */
 	@Override
 	public void delete(Region region) {
@@ -50,7 +47,6 @@ public class RegionServiceImpl implements IRegionService{
 
 	/* 
 	 *
-	 *2017Äê2ÔÂ16ÈÕÉÏÎç11:39:39
 	 */
 	@Override
 	public void saveBacth(List<Region> list) {
@@ -59,7 +55,6 @@ public class RegionServiceImpl implements IRegionService{
 
 	/* 
 	 *
-	 *2017Äê2ÔÂ16ÈÕÏÂÎç1:30:28
 	 */
 	@Override
 	public void pageQuery(PageBean pageBean) {
@@ -69,7 +64,6 @@ public class RegionServiceImpl implements IRegionService{
 
 	/* 
 	 *
-	 *2017Äê2ÔÂ16ÈÕÏÂÎç5:01:26
 	 */
 	@Override
 	public List<Region> findAll() {
@@ -79,7 +73,6 @@ public class RegionServiceImpl implements IRegionService{
 
 	/* 
 	 *
-	 *2017Äê2ÔÂ16ÈÕÏÂÎç5:14:46
 	 */
 	@Override
 	public List<Region> findByQ(String q) {
@@ -89,7 +82,6 @@ public class RegionServiceImpl implements IRegionService{
 
 	/* 
 	 *
-	 *2017Äê2ÔÂ17ÈÕÉÏÎç9:17:30
 	 */
 	@Override
 	public void update(Region region) {
