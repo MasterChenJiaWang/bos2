@@ -25,12 +25,11 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 /**
- *<p>±êÌâ: ProcessInstanceAction </p>
- *<p>ÃèÊö£ºÁ÷³ÌÊµÀı¹ÜÀí </p>
+ *<p>æ ‡é¢˜: ProcessInstanceAction </p>
+ *<p>æè¿°ï¼šæµç¨‹å®ä¾‹ç®¡ç† </p>
  *<p>company:</p>
- * @×÷Õß  ³Â¼ÓÍû
- * @Ê±¼ä  2017Äê2ÔÂ21ÈÕ ÉÏÎç10:31:10
- *@°æ±¾ 
+ * @ä½œè€…  é™ˆåŠ æœ›
+ *@ç‰ˆæœ¬ 
  */
 @Controller
 @Scope("prototype")
@@ -45,22 +44,21 @@ public class ProcessInstanceAction extends ActionSupport {
 
 
 	/**
-	 * ²éÑ¯Á÷³ÌÊµÀıÁĞ±íÊı¾İ
+	 * æŸ¥è¯¢æµç¨‹å®ä¾‹åˆ—è¡¨æ•°æ®
 	 * 
-	 *@Ê±¼ä 2017Äê2ÔÂ21ÈÕ ÉÏÎç10:32:48
 	 */
 	public String list(){
-		logger.info("ÕıÔÚ²éÑ¯Á÷³ÌÊµÀıÁĞ±íÊı¾İ");
+		logger.info("æ­£åœ¨æŸ¥è¯¢æµç¨‹å®ä¾‹åˆ—è¡¨æ•°æ®");
 		ProcessInstanceQuery query = runtimeService.createProcessInstanceQuery();
 		query.orderByProcessInstanceId().desc();
 		List<ProcessInstance> list = query.list();
 		ActionContext.getContext().getValueStack().set("list", list);
-		logger.info("²éÑ¯Á÷³ÌÊµÀıÁĞ±íÊı¾İÍê³É¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£");
+		logger.info("æŸ¥è¯¢æµç¨‹å®ä¾‹åˆ—è¡¨æ•°æ®å®Œæˆã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚");
 		return "list";
 	}
 
 
-	private String id;//½ÓÊÜÁ÷³ÌÊµÀıid
+	private String id;//æ¥å—æµç¨‹å®ä¾‹id
 	
 	/**
 	 * @return id
@@ -70,15 +68,14 @@ public class ProcessInstanceAction extends ActionSupport {
 	}
 
 	/**
-	 * @param id ÒªÉèÖÃµÄ id
+	 * @param id è¦è®¾ç½®çš„ id
 	 */
 	public void setId(String id) {
 		this.id = id;
 	}
 	/**
-	 * ¸ù¾İÁ÷³ÌÊµÀıid²éÑ¯¶ÔÓ¦µÄÁ÷³Ì±äÁ¿Êı¾İ
+	 * æ ¹æ®æµç¨‹å®ä¾‹idæŸ¥è¯¢å¯¹åº”çš„æµç¨‹å˜é‡æ•°æ®
 	 * 
-	 *@Ê±¼ä 2017Äê2ÔÂ21ÈÕ ÉÏÎç10:40:05
 	 */
 	public String findData() throws Exception{
 		Map<String, Object> map= runtimeService.getVariables(id);
@@ -90,28 +87,27 @@ public class ProcessInstanceAction extends ActionSupport {
 	private String	deploymentId;
 	private String	imageName;
 	/**
-	 * ¸ù¾İÁ÷³ÌÊµÀıid²éÑ¯×ø±ê¡¢²¿Êğid Í¼Æ¬Ãû³Æ
+	 * æ ¹æ®æµç¨‹å®ä¾‹idæŸ¥è¯¢åæ ‡ã€éƒ¨ç½²id å›¾ç‰‡åç§°
 	 * 
-	 *@Ê±¼ä 2017Äê2ÔÂ21ÈÕ ÉÏÎç10:47:27
 	 */
 	public String showPng(){
-		logger.info("ÕıÔÚ  ¸ù¾İÁ÷³ÌÊµÀıid²éÑ¯×ø±ê¡¢²¿Êğid Í¼Æ¬Ãû³Æ");
-		//1¡¢¸ù¾İÁ÷³ÌÊµÀıid²éÑ¯Á÷³ÌÊµÀı¶ÔÏó
+		logger.info("æ­£åœ¨  æ ¹æ®æµç¨‹å®ä¾‹idæŸ¥è¯¢åæ ‡ã€éƒ¨ç½²id å›¾ç‰‡åç§°");
+		//1ã€æ ¹æ®æµç¨‹å®ä¾‹idæŸ¥è¯¢æµç¨‹å®ä¾‹å¯¹è±¡
 				ProcessInstance processInstance = runtimeService.createProcessInstanceQuery().processInstanceId(id).singleResult();
-				//2¡¢¸ù¾İÁ÷³ÌÊµÀı¶ÔÏó²éÑ¯Á÷³Ì¶¨Òåid
+				//2ã€æ ¹æ®æµç¨‹å®ä¾‹å¯¹è±¡æŸ¥è¯¢æµç¨‹å®šä¹‰id
 				String processDefinitionId = processInstance.getProcessDefinitionId();
-				//3¡¢¸ù¾İÁ÷³Ì¶¨Òåid²éÑ¯Á÷³Ì¶¨Òå¶ÔÏó
+				//3ã€æ ¹æ®æµç¨‹å®šä¹‰idæŸ¥è¯¢æµç¨‹å®šä¹‰å¯¹è±¡
 				ProcessDefinition processDefinition = repositoryService.createProcessDefinitionQuery().processDefinitionId(processDefinitionId).singleResult();
-				//4¡¢¸ù¾İÁ÷³Ì¶¨Òå¶ÔÏó²éÑ¯²¿Êğid
+				//4ã€æ ¹æ®æµç¨‹å®šä¹‰å¯¹è±¡æŸ¥è¯¢éƒ¨ç½²id
 				deploymentId = processDefinition.getDeploymentId();
 				imageName = processDefinition.getDiagramResourceName();
 //				String deploymentId = processDefinition.getDeploymentId();
-				//²éÑ¯×ø±ê
-				//1¡¢»ñµÃµ±Ç°Á÷³ÌÊµÀıÖ´ĞĞµ½ÄÄ¸ö½Úµã
+				//æŸ¥è¯¢åæ ‡
+				//1ã€è·å¾—å½“å‰æµç¨‹å®ä¾‹æ‰§è¡Œåˆ°å“ªä¸ªèŠ‚ç‚¹
 				String activityId = processInstance.getActivityId();//usertask1
-				//2¡¢¼ÓÔØbpmn£¨xml£©ÎÄ¼ş£¬»ñµÃÒ»¸öÁ÷³Ì¶¨Òå¶ÔÏó
-				ProcessDefinitionEntity pd = (ProcessDefinitionEntity) repositoryService.getProcessDefinition(processDefinitionId);//²éÑ¯act_ge_bytearray
-				//3¡¢¸ù¾İactivitiId»ñÈ¡º¬ÓĞ×ø±êĞÅÏ¢µÄ¶ÔÏó
+				//2ã€åŠ è½½bpmnï¼ˆxmlï¼‰æ–‡ä»¶ï¼Œè·å¾—ä¸€ä¸ªæµç¨‹å®šä¹‰å¯¹è±¡
+				ProcessDefinitionEntity pd = (ProcessDefinitionEntity) repositoryService.getProcessDefinition(processDefinitionId);//æŸ¥è¯¢act_ge_bytearray
+				//3ã€æ ¹æ®activitiIdè·å–å«æœ‰åæ ‡ä¿¡æ¯çš„å¯¹è±¡
 				ActivityImpl findActivity = pd.findActivity(activityId);
 				int x = findActivity.getX();
 				int y = findActivity.getY();
@@ -122,22 +118,21 @@ public class ProcessInstanceAction extends ActionSupport {
 				ActionContext.getContext().getValueStack().set("y", y);
 				ActionContext.getContext().getValueStack().set("width", width);
 				ActionContext.getContext().getValueStack().set("height", height);
-				logger.info("¸ù¾İÁ÷³ÌÊµÀıid²éÑ¯×ø±ê¡¢²¿Êğid Í¼Æ¬Ãû³ÆÍê³É¡£¡£¡£¡£¡£¡£¡£¡£¡£");
+				logger.info("æ ¹æ®æµç¨‹å®ä¾‹idæŸ¥è¯¢åæ ‡ã€éƒ¨ç½²id å›¾ç‰‡åç§°å®Œæˆã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚");
 				return "showPng";
 
 	}
 
 
 	/**
-	 * »ñÈ¡pngÊäÈëÁ÷
+	 * è·å–pngè¾“å…¥æµ
 	 * 
-	 *@Ê±¼ä 2017Äê2ÔÂ21ÈÕ ÉÏÎç10:57:19
 	 */
 	public String viewImage(){
-		logger.info("ÕıÔÚ»ñÈ¡pngÊäÈëÁ÷");
+		logger.info("æ­£åœ¨è·å–pngè¾“å…¥æµ");
 		InputStream pngStream = repositoryService.getResourceAsStream(deploymentId, imageName);
 		ActionContext.getContext().getValueStack().set("pngSteam",pngStream);
-		logger.info("»ñÈ¡pngÊäÈëÁ÷Íê³É¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£");
+		logger.info("è·å–pngè¾“å…¥æµå®Œæˆã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚");
 		return "viewImage";
 	}
 

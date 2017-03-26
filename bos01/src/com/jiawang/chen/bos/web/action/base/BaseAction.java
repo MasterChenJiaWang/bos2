@@ -38,12 +38,11 @@ import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
 
 /**
- *<p>±êÌâ: BaseAction </p>
- *<p>ÃèÊö£º </p>
+ *<p>æ ‡é¢˜: BaseAction </p>
+ *<p>æè¿°ï¼š </p>
  *<p>company:</p>
- * @×÷Õß  ³Â¼ÓÍû
- * @Ê±¼ä  2017Äê2ÔÂ15ÈÕ ÏÂÎç4:02:40
- *@°æ±¾ 
+ * @ä½œè€…  é™ˆåŠ æœ›
+ *@ç‰ˆæœ¬ 
  */
 
 public class BaseAction<T> extends ActionSupport implements ModelDriven<T>{
@@ -77,23 +76,22 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T>{
 	
 	@Resource
 	protected IWorkordermanageService  workordermanageService;
-	//Ä£ĞÍ¶ÔÏó 
+	//æ¨¡å‹å¯¹è±¡ 
 	protected T model;
 	protected Class<T> entity;
 	protected  PageBean pageBean = new PageBean();
 	/* 
 	 *
-	 *2017Äê2ÔÂ15ÈÕÏÂÎç4:03:58
 	 */
 	@Override
 	public T getModel() {
 		return model;
 	}
-	protected int rows;//Ã¿Ò³ÏÔÊ¾µÄ¼ÇÂ¼Êı
-	protected int page;//Ò³Âë£¨0,5£©£¨1,10£©
+	protected int rows;//æ¯é¡µæ˜¾ç¤ºçš„è®°å½•æ•°
+	protected int page;//é¡µç ï¼ˆ0,5ï¼‰ï¼ˆ1,10ï¼‰
 
 	/**
-	 * @param rows ÒªÉèÖÃµÄ rows
+	 * @param rows è¦è®¾ç½®çš„ rows
 	 */
 	public void setRows(int rows) {
 		pageBean.setPageSize(rows);
@@ -101,7 +99,7 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T>{
 	}
 
 	/**
-	 * @param page ÒªÉèÖÃµÄ page
+	 * @param page è¦è®¾ç½®çš„ page
 	 */
 	public void setPage(int page) {
 		pageBean.setCurrentPage(page);
@@ -128,7 +126,7 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T>{
 		try {
 			model=entity.newInstance();
 		} catch (InstantiationException e) {
-			// TODO ×Ô¶¯Éú³ÉµÄ catch ¿é
+			// TODO è‡ªåŠ¨ç”Ÿæˆçš„ catch å—
 			e.printStackTrace();
 		} catch (IllegalAccessException e) {
 			e.printStackTrace();
@@ -146,9 +144,8 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T>{
 	
 	
 	/**
-	 * pageBean×ªjson
+	 * pageBeanè½¬json
 	 * 
-	 *@Ê±¼ä 2017Äê2ÔÂ16ÈÕ ÏÂÎç3:24:01
 	 */
 	public void WritePageBean2Json(PageBean pageBean,String[] excludes) throws Exception{
 		JsonConfig jsonConfig = new JsonConfig();
@@ -161,8 +158,7 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T>{
 	
 	/**
 	 * 
-	 * list×ªjson
-	 *@Ê±¼ä 2017Äê2ÔÂ16ÈÕ ÏÂÎç3:24:22
+	 * listè½¬json
 	 */
 	public void WriteList2Json(List<T> list,String[] excludes) throws Exception{
 		JsonConfig jsonConfig = new JsonConfig();
@@ -175,9 +171,8 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T>{
 	
 	
 	/**
-	 * Í¨ÓÃ×ªjson
+	 * é€šç”¨è½¬json
 	 * 
-	 *@Ê±¼ä 2017Äê2ÔÂ20ÈÕ ÏÂÎç8:57:55
 	 */
 	public void WriteObject2Json(Object object,String[] excludes) throws Exception{
 		JsonConfig jsonConfig = new JsonConfig();
@@ -189,9 +184,8 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T>{
 	}
 
 	/**
-	 * ×ª³ÇÊĞÂë
+	 * è½¬åŸå¸‚ç 
 	 * 
-	 *@Ê±¼ä 2017Äê2ÔÂ16ÈÕ ÏÂÎç12:48:32
 	 */
 	public String string2Citycode(String city){
 		
@@ -202,9 +196,8 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T>{
 	}
 	
 	/**
-	 * ×ª³ÇÊĞ¼òÂë
+	 * è½¬åŸå¸‚ç®€ç 
 	 * 
-	 *@Ê±¼ä 2017Äê2ÔÂ16ÈÕ ÏÂÎç12:44:46
 	 */
 	public String string2Shortcode(String city,String province,String district){
 		city=city.substring(0, city.length()-1);

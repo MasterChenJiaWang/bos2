@@ -13,12 +13,11 @@ import com.jiawang.chen.bos.entity.Function;
 import com.jiawang.chen.bos.web.action.base.BaseAction;
 
 /**
- *<p>±êÌâ: FunctionAction </p>
- *<p>ÃèÊö£º </p>
+ *<p>æ ‡é¢˜: FunctionAction </p>
+ *<p>æè¿°ï¼š </p>
  *<p>company:</p>
- * @×÷Õß  ³Â¼ÓÍû
- * @Ê±¼ä  2017Äê2ÔÂ20ÈÕ ÏÂÎç10:44:49
- *@°æ±¾ 
+ * @ä½œè€…  é™ˆåŠ æœ›
+ *@ç‰ˆæœ¬ 
  */
 @Controller
 @Scope("prototype")
@@ -31,25 +30,24 @@ public class FunctionAction extends BaseAction<Function> {
 		functionService.pageQuery(pageBean);
 		String[] excludes=new String[]{"function","functions","roles","currentPage","detachedCriteria","pageSize"};
 		this.WriteObject2Json(pageBean, excludes);
-		logger.info("È¨ÏŞ·ÖÒ³³É¹¦");
+		logger.info("æƒé™åˆ†é¡µæˆåŠŸ");
 		return NONE;
 	}
 	
 	/**
 	 * 
 	 * 
-	 *@Ê±¼ä 2017Äê2ÔÂ20ÈÕ ÏÂÎç10:53:45
 	 */
 	public String listajax() throws Exception{
 		List<Function> list = functionService.findAll();
 		String[] excludes = new String[]{"function","functions","roles"};
 		this.WriteList2Json(list, excludes );
-		logger.info("È¨ÏŞÒì²½ÇëÇó³É¹¦");
+		logger.info("æƒé™å¼‚æ­¥è¯·æ±‚æˆåŠŸ");
 		return NONE;
 	}
 	
 	/**
-	 * Ìí¼ÓÈ¨ÏŞ
+	 * æ·»åŠ æƒé™
 	 */
 	public String add(){
 		functionService.add(model);
@@ -58,8 +56,7 @@ public class FunctionAction extends BaseAction<Function> {
 	
 	/**
 	 * 
-	 * ¸ù¾İµÇÂ½ÈË²éÑ¯¶ÔÓ¦µÄ²Ëµ¥Êı¾İ£¨´ÓÈ¨ÏŞ±íÖĞ²éÑ¯£©
-	 *@Ê±¼ä 2017Äê2ÔÂ21ÈÕ ÉÏÎç9:23:26
+	 * æ ¹æ®ç™»é™†äººæŸ¥è¯¢å¯¹åº”çš„èœå•æ•°æ®ï¼ˆä»æƒé™è¡¨ä¸­æŸ¥è¯¢ï¼‰
 	 */
 	public String findMenu() throws Exception{
 		List<Function> list=functionService.findMenu();

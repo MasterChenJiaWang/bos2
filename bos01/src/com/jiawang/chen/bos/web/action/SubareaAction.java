@@ -25,12 +25,11 @@ import com.jiawang.chen.bos.web.action.base.BaseAction;
 import com.jiawang.chen.bos.web.utils.FileUtils;
 
 /**
- *<p>±êÌâ: SubareaAction </p>
- *<p>ÃèÊö£º </p>
+ *<p>æ ‡é¢˜: SubareaAction </p>
+ *<p>æè¿°ï¼š </p>
  *<p>company:</p>
- * @×÷Õß  ³Â¼ÓÍû
- * @Ê±¼ä  2017Äê2ÔÂ17ÈÕ ÉÏÎç9:29:01
- *@°æ±¾ 
+ * @ä½œè€…  é™ˆåŠ æœ›
+ *@ç‰ˆæœ¬ 
  */
 @Controller
 @Scope("prototype")
@@ -39,75 +38,71 @@ public class SubareaAction  extends BaseAction<Subarea>{
 	private static final Logger logger = Logger.getLogger(SubareaAction.class);
 	
 	/**
-	 * Ìí¼Ó
+	 * æ·»åŠ 
 	 * 
-	 *@Ê±¼ä 2017Äê2ÔÂ17ÈÕ ÉÏÎç9:41:34
 	 */
 	public String add(){
-		logger.info("·ÖÇøÕıÔÚÌí¼Ó£¡");
+		logger.info("åˆ†åŒºæ­£åœ¨æ·»åŠ ï¼");
 		subareaService.add(model);
-		logger.info("·ÖÇøÌí¼ÓÍê³É£¡");
+		logger.info("åˆ†åŒºæ·»åŠ å®Œæˆï¼");
 		return "list";
 	}
 	
 	
 	/**
 	 * 
-	 * ĞŞ¸Ä
-	 *@Ê±¼ä 2017Äê2ÔÂ17ÈÕ ÉÏÎç9:41:47
+	 * ä¿®æ”¹
 	 */
 	public String edit(){
-		logger.info("·ÖÇøÕıÔÚĞŞ¸Ä£¡");
+		logger.info("åˆ†åŒºæ­£åœ¨ä¿®æ”¹ï¼");
 		subareaService.edit(model);
-		logger.info("·ÖÇøĞŞ¸ÄÍê³É£¡");
+		logger.info("åˆ†åŒºä¿®æ”¹å®Œæˆï¼");
 		return "list";
 	}
 	
 	
 	/**
-	 * É¾³ı
+	 * åˆ é™¤
 	 * 
-	 *@Ê±¼ä 2017Äê2ÔÂ17ÈÕ ÉÏÎç9:42:32
 	 */
 	public String delete(){
-		logger.info("·ÖÇøÕıÔÚÉ¾³ı£¡");
+		logger.info("åˆ†åŒºæ­£åœ¨åˆ é™¤ï¼");
 		subareaService.delete(model);
-		logger.info("·ÖÇøÉ¾³ıÍê³É£¡");
+		logger.info("åˆ†åŒºåˆ é™¤å®Œæˆï¼");
 		return "list";
 	}
 	
 	
 	/**
-	 *·ÖÒ³
+	 *åˆ†é¡µ
 	 * 
-	 *@Ê±¼ä 2017Äê2ÔÂ17ÈÕ ÉÏÎç9:43:35
 	 */
 	public String pageQuery()throws Exception{
-				logger.info("·ÖÇø·ÖÒ³ÕıÔÚ½øĞĞ.......");
-				//ÔÚ²éÑ¯Ö®Ç° ·â×°Ìõ¼ş
+				logger.info("åˆ†åŒºåˆ†é¡µæ­£åœ¨è¿›è¡Œ.......");
+				//åœ¨æŸ¥è¯¢ä¹‹å‰ å°è£…æ¡ä»¶
 				DetachedCriteria detachedCriteria2 = pageBean.getDetachedCriteria();
 				String addresskey = model.getAddresskey();
 				Region region = model.getRegion();
 				if(StringUtils.isNotBlank(addresskey)){
-					//°´ÕÕµØÖ·¹Ø¼ü×ÖÄ£ºı²éÑ¯
+					//æŒ‰ç…§åœ°å€å…³é”®å­—æ¨¡ç³ŠæŸ¥è¯¢
 					detachedCriteria2.add(Restrictions.like("addressKey", addresskey));
 				}
 				if(region!=null){
-					//´´½¨±ğÃû£¬ÓÃÓÚ¶á±ê¹ØÁª²éÑ¯
+					//åˆ›å»ºåˆ«åï¼Œç”¨äºå¤ºæ ‡å…³è”æŸ¥è¯¢
 					detachedCriteria2.createAlias("region", "r");
 					String province = region.getProvince();
 					String city = region.getCity();
 					String district = region.getDistrict();
 					if(StringUtils.isNotBlank(province)){
-						//°´ÕÕÊ¡½øĞĞÄ£ºı²éÑ¯
+						//æŒ‰ç…§çœè¿›è¡Œæ¨¡ç³ŠæŸ¥è¯¢
 						detachedCriteria2.add(Restrictions.like("r.province","%"+province+"%"));
 					}
 					if(StringUtils.isNotBlank(city)){
-						//°´ÕÕÊĞ½øĞĞÄ£ºı²éÑ¯
+						//æŒ‰ç…§å¸‚è¿›è¡Œæ¨¡ç³ŠæŸ¥è¯¢
 						detachedCriteria2.add(Restrictions.like("r.city","%"+city+"%"));
 					}
 					if(StringUtils.isNotBlank(district)){
-						//°´ÕÕÇø½øĞĞÄ£ºı²éÑ¯
+						//æŒ‰ç…§åŒºè¿›è¡Œæ¨¡ç³ŠæŸ¥è¯¢
 						detachedCriteria2.add(Restrictions.like("r.district","%"+district+"%"));
 					}
 				}
@@ -115,7 +110,7 @@ public class SubareaAction  extends BaseAction<Subarea>{
 				String[] executes=new String[]{"detachedCriteria","currentpage","pageSize","decidedzone","subareas","decidedzones"};
 				//String[] executes=new String[]{"detachedCriteria","currentpage","pageSize","decidedzones","subareas","decidedzone"};
 				this.WritePageBean2Json(pageBean, executes);
-				logger.info("·ÖÇø·ÖÒ³Íê³É");
+				logger.info("åˆ†åŒºåˆ†é¡µå®Œæˆ");
 				return NONE;
 	}
 	
@@ -123,24 +118,23 @@ public class SubareaAction  extends BaseAction<Subarea>{
 	/**
 	 * 
 	 * 
-	 *@Ê±¼ä 2017Äê2ÔÂ17ÈÕ ÉÏÎç10:05:23
 	 */
 	public String exportXls() throws IOException{
-		logger.info("µ¼³ö·ÖÇøÕıÔÚ½øĞĞ...............");
+		logger.info("å¯¼å‡ºåˆ†åŒºæ­£åœ¨è¿›è¡Œ...............");
 		List<Subarea> list = subareaService.findAll();
 		
 		HSSFWorkbook workbook = new HSSFWorkbook();
 		
-		HSSFSheet sheet = workbook.createSheet("·ÖÇøÊı¾İ");
+		HSSFSheet sheet = workbook.createSheet("åˆ†åŒºæ•°æ®");
 		
 		HSSFRow headRow = sheet.createRow(0);
-		headRow.createCell(0).setCellValue("·ÖÇø±àºÅ");
-		headRow.createCell(1).setCellValue("ÇøÓò±àºÅ");
-		headRow.createCell(2).setCellValue("µØÖ·¹Ø¼ü×Ö");
-		headRow.createCell(3).setCellValue("Ê¡ÊĞÇø");
+		headRow.createCell(0).setCellValue("åˆ†åŒºç¼–å·");
+		headRow.createCell(1).setCellValue("åŒºåŸŸç¼–å·");
+		headRow.createCell(2).setCellValue("åœ°å€å…³é”®å­—");
+		headRow.createCell(3).setCellValue("çœå¸‚åŒº");
 		
 		for(Subarea subarea:list){
-			//ÔÚÊ×ĞĞÏÂ´´½¨Ò»ĞĞ
+			//åœ¨é¦–è¡Œä¸‹åˆ›å»ºä¸€è¡Œ
 			HSSFRow dataRow = sheet.createRow(sheet.getLastRowNum()+1);
 			dataRow.createCell(0).setCellValue(subarea.getId());
 			dataRow.createCell(1).setCellValue(subarea.getRegion().getId());
@@ -150,10 +144,10 @@ public class SubareaAction  extends BaseAction<Subarea>{
 			
 			dataRow.createCell(3).setCellValue(region.getName());
 			}
-			String filename="·ÖÇøÊı¾İ.xls";
+			String filename="åˆ†åŒºæ•°æ®.xls";
 			String agent = ServletActionContext.getRequest().getHeader("User-Agent");
 			filename = FileUtils.encodeDownloadFilename(filename, agent);
-			//Ò»¸öÁ÷Á½¸öÍ·
+			//ä¸€ä¸ªæµä¸¤ä¸ªå¤´
 			ServletOutputStream out = ServletActionContext.getResponse().getOutputStream();
 			String contentType = ServletActionContext.getServletContext().getMimeType(filename);
 			ServletActionContext.getResponse().setContentType(contentType);

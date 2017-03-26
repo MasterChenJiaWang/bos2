@@ -28,11 +28,11 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.util.ValueStack;
 
 /**
- *<p>����: UserAction </p>
- *<p>������ </p>
+ *<p>标题: UserAction </p>
+ *<p>描述： </p>
  *<p>company:</p>
- * @����  �¼���
- *@�汾 
+ * @作者  陈加望
+ *@版本 
  */
 @Controller
 @Scope("prototype")
@@ -42,24 +42,24 @@ public class UserAction extends BaseAction<User> {
 	private static final Logger logger = Logger.getLogger(UserAction.class);
 	private String checkcode;
 	/**
-	 * @param checkcode Ҫ���õ� checkcode
+	 * @param checkcode 要设置的 checkcode
 	 */
 	public void setCheckcode(String checkcode) {
 		this.checkcode = checkcode;
 	}
 
 	public String login(){
-		logger.info("���ڵ�½------------------------------");
+		logger.info("正在登陆------------------------------");
 		ValueStack stack = ActionContext.getContext().getValueStack();
-		//���ɵ���֤��
+		//生成的验证码
 		String key=(String)ServletActionContext.getRequest().getSession().getAttribute("key");
 		
-		//�ж��û��������֤���Ƿ���ȷ
+		//判断用户输入的验证码是否正确
 		if(StringUtils.isNotBlank(key) && checkcode.equals(key)){
 			String username = model.getUsername();
 			String password = model.getPassword();
-			logger.info("���ڵ�½------------------------------"+username);
-			Subject subject = SecurityUtils.getSubject();//״̬Ϊ��δ��֤��
+			logger.info("正在登陆------------------------------"+username);
+			Subject subject = SecurityUtils.getSubject();//状态为“未认证”
 			password = MD5Utils.md5(password);
 			
 			UsernamePasswordToken token = new UsernamePasswordToken(model.getUsername(), password);
@@ -69,38 +69,38 @@ public class UserAction extends BaseAction<User> {
 			} catch (AuthenticationException e) {
 				e.printStackTrace();
 				this.addActionError(this.getText("usernamenotfound"));
-				logger.info("��¼ʧ��----");
+				logger.info("登录失败----");
 				return "login";
 			}catch (Exception e) {
 				e.printStackTrace();
-				//���ô�����Ϣ
+				//设置错误信息
 				this.addActionError(this.getText("loginError"));
 				return "login";
 			}
-			//��ȡ��֤��Ϣ�����д洢��User����
+			//获取认证信息对象中存储的User对象
 			User user = (User) subject.getPrincipal();
 			ServletActionContext.getRequest().getSession().setAttribute("loginUser", user);
-			logger.info("��¼�ɹ�----");
+			logger.info("登录成功----");
 			return "home";
 		}else{
-			//��֤�����,���ô�����ʾ��Ϣ����ת����¼ҳ��
+			//验证码错误,设置错误提示信息，跳转到登录页面
 			this.addActionError(this.getText("validateCodeError"));
-			logger.info("��֤��ʧ��----");
+			logger.info("验证码失败----");
 			return "login";
 		}	
 			//	User user = userService.loginByUsernameAndPassword(username, password);
 //			if(user!=null){
 //				ServletActionContext.getRequest().getSession().setAttribute("loginUser", user);
-//				logger.info("��¼�ɹ�----");
+//				logger.info("登录成功----");
 //				return "home";
 //			}else{
 //				this.addActionError(this.getText("loginError"));
-//				logger.info("��¼ʧ��----");
+//				logger.info("登录失败----");
 //				return "login";
 //			}
 //		}else{
 //			this.addActionError(this.getText("validateCodeError"));
-//			logger.info("��֤�����----");
+//			logger.info("验证码错误----");
 //			return "login";
 //		}
 	}
@@ -109,45 +109,44 @@ public class UserAction extends BaseAction<User> {
 	public String login_back(){
 		ValueStack valueStack = ActionContext.getContext().getValueStack();
 		
-		//���ɵ���֤��
+		//生成的验证码
 		String key = (String) ServletActionContext.getRequest().getSession().getAttribute("key");
 		
-		//�ж��û��������֤���Ƿ���ȷ
+		//判断用户输入的验证码是否正确
 		if(StringUtils.isNotBlank(checkcode) && checkcode.equals(key)){
-			//��֤����ȷ
+			//验证码正确
 			User user = userService.login(model);
 			if(user != null){
-				//��¼�ɹ�,��User����session����ת��ϵͳ��ҳ
+				//登录成功,将User放入session域，跳转到系统首页
 				ServletActionContext.getRequest().getSession().setAttribute("loginUser", user);
 				return "home";
 			}else{
-				//��¼ʧ�ܣ����ô�����ʾ��Ϣ����ת����¼ҳ��
+				//登录失败，设置错误提示信息，跳转到登录页面
 				this.addActionError(this.getText("loginError"));
 				return "login";
 			}
 		}else{
-			//��֤�����,���ô�����ʾ��Ϣ����ת����¼ҳ��
+			//验证码错误,设置错误提示信息，跳转到登录页面
 			this.addActionError(this.getText("validateCodeError"));
 			return "login";
 		}
 	}
 	
 	/**
-	 * ע���û�
+	 * 注销用户
 	 * 
-	 *@ʱ�� 2017��2��16�� ����8:56:21
 	 */
 	public String logout(){
-		logger.info("����ע��----");
+		logger.info("正在注销----");
 		ServletActionContext.getRequest().getSession().invalidate();
-		logger.info("ע���ɹ�----");
+		logger.info("注销成功----");
 		return "login";
 	}
 	
 	@RequiresPermissions(value="staff")
 	@RequiresRoles(value="abc")
 	public void eidtPassword() throws Exception{
-		logger.info("�����޸��û�����----");
+		logger.info("正在修改用户密码----");
 		User user=(User)ServletActionContext.getRequest().getSession().getAttribute("loginUser");
 		
 		String password = model.getPassword();
@@ -156,9 +155,9 @@ public class UserAction extends BaseAction<User> {
 		String id = user.getId();
 		try {
 			userService.editpassword(password, id);
-			logger.info("�޸�����ɹ�----");
+			logger.info("修改密码成功----");
 		} catch (Exception e) {
-			logger.info("�޸�����ʧ��----");
+			logger.info("修改密码失败----");
 			flag="0";
 			e.printStackTrace();
 		}
@@ -167,7 +166,7 @@ public class UserAction extends BaseAction<User> {
 	}
 	
 	
-	//���ս�ɫ����
+	//接收角色数据
 		private String[] roleIds;
 		
 		
@@ -179,34 +178,33 @@ public class UserAction extends BaseAction<User> {
 		}
 
 		/**
-		 * @param roleIds Ҫ���õ� roleIds
+		 * @param roleIds 要设置的 roleIds
 		 */
 		public void setRoleIds(String[] roleIds) {
 			this.roleIds = roleIds;
 		}
 
 /**
- * ����û���ɫ
+ * 添加用户角色
  * 
- *@ʱ�� 2017��2��21�� ����9:02:05
  */
 	public String add(){
-		logger.info("��������û���ɫ");
+		logger.info("正在添加用户角色");
 		userService.save(model, roleIds);
-		logger.info("����û���ɫ���");
+		logger.info("添加用户角色完成");
 		return "list";
 	}
 	
 	/**
-	 * �û���ҳ��ѯ
+	 * 用户分页查询
 	 * @throws IOException 
 	 */
 	public String pageQuery() throws Exception{
-		logger.info("�����û���ҳ��ѯ");
+		logger.info("正在用户分页查询");
 		userService.pageQuery(pageBean);
 		String[] excludes = new String[]{"noticebills","roles"};
 		this.WriteObject2Json(pageBean, excludes );
-		logger.info("�û���ҳ��ѯ���");
+		logger.info("用户分页查询完成");
 		return NONE;
 	}
 	

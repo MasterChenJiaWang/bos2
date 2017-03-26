@@ -13,12 +13,11 @@ import com.jiawang.chen.bos.entity.Role;
 import com.jiawang.chen.bos.web.action.base.BaseAction;
 
 /**
- *<p>±êÌâ: RoleAction </p>
- *<p>ÃèÊö£º </p>
+ *<p>æ ‡é¢˜: RoleAction </p>
+ *<p>æè¿°ï¼š </p>
  *<p>company:</p>
- * @×÷Õß  ³Â¼ÓÍû
- * @Ê±¼ä  2017Äê2ÔÂ20ÈÕ ÏÂÎç11:33:09
- *@°æ±¾ 
+ * @ä½œè€…  é™ˆåŠ æœ›
+ *@ç‰ˆæœ¬ 
  */
 @Controller
 @Scope("prototype")
@@ -36,7 +35,7 @@ public class RoleAction extends BaseAction<Role> {
 	}
 
 	/**
-	 * @param ids ÒªÉèÖÃµÄ ids
+	 * @param ids è¦è®¾ç½®çš„ ids
 	 */
 	public void setIds(String ids) {
 		this.ids = ids;
@@ -46,40 +45,39 @@ public class RoleAction extends BaseAction<Role> {
 	/**
 	 * 
 	 * 
-	 *@Ê±¼ä 2017Äê2ÔÂ20ÈÕ ÏÂÎç11:46:21
 	 */
 	public String add(){
 		roleService.add(model,ids);
-		logger.info("Ìí¼Ó½ÇÉ«È¨ÏŞ³É¹¦");
+		logger.info("æ·»åŠ è§’è‰²æƒé™æˆåŠŸ");
 		return "list";
 	}
 	
 	
 	/**
-	 * ·ÖÒ³²éÑ¯·½·¨
+	 * åˆ†é¡µæŸ¥è¯¢æ–¹æ³•
 	 * @throws IOException 
 	 */
 	public String pageQuery() throws Exception{
-		logger.info("ÕıÔÚ·ÖÒ³²éÑ¯½ÇÉ«");
+		logger.info("æ­£åœ¨åˆ†é¡µæŸ¥è¯¢è§’è‰²");
 		roleService.pageQuery(pageBean);
-		//½«PageBean¶ÔÏó×ªÎªjson·µ»Ø
+		//å°†PageBeanå¯¹è±¡è½¬ä¸ºjsonè¿”å›
 		this.WriteObject2Json(pageBean, new String[]{"functions","users","currentPage","detachedCriteria","pageSize"});
-		logger.info("·ÖÒ³²éÑ¯½ÇÉ«Íê³É¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£");
+		logger.info("åˆ†é¡µæŸ¥è¯¢è§’è‰²å®Œæˆã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚");
 		return NONE;
 	}
 	
 	/**
-	 * ²éÑ¯ËùÓĞµÄ½ÇÉ«Êı¾İ£¬·µ»Øjson
+	 * æŸ¥è¯¢æ‰€æœ‰çš„è§’è‰²æ•°æ®ï¼Œè¿”å›json
 	 * @return
 	 * @throws IOException
 	 */
 	public String listajax() throws Exception{
 		
-		logger.info("ÕıÔÚ²éÑ¯ËùÓĞµÄ½ÇÉ«Êı¾İ£¬·µ»Øjson");
+		logger.info("æ­£åœ¨æŸ¥è¯¢æ‰€æœ‰çš„è§’è‰²æ•°æ®ï¼Œè¿”å›json");
 		List<Role> list = roleService.findAll();
 		String[] excludes = new String[]{"functions","users"};
 		this.WriteList2Json(list, excludes );
-		logger.info("²éÑ¯ËùÓĞµÄ½ÇÉ«Êı¾İ Íê³É¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£");
+		logger.info("æŸ¥è¯¢æ‰€æœ‰çš„è§’è‰²æ•°æ® å®Œæˆã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚");
 		return NONE;
 	}
 }

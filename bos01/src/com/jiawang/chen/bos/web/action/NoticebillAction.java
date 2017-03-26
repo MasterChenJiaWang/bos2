@@ -15,12 +15,11 @@ import com.jiawang.chen.bos.web.utils.BOSContext;
 import cn.jiawang.chen.crm.entity.Customer;
 
 /**
- *<p>±êÌâ: NoticebillAction </p>
- *<p>ÃèÊö£º </p>
+ *<p>æ ‡é¢˜: NoticebillAction </p>
+ *<p>æè¿°ï¼š </p>
  *<p>company:</p>
- * @×÷Õß  ³Â¼ÓÍû
- * @Ê±¼ä  2017Äê2ÔÂ20ÈÕ ÏÂÎç8:53:17
- *@°æ±¾ 
+ * @ä½œè€…  é™ˆåŠ æœ›
+ *@ç‰ˆæœ¬ 
  */
 @Controller
 @Scope("prototype")
@@ -30,22 +29,21 @@ public class NoticebillAction  extends BaseAction<Noticebill>{
 	
 	/**
 	 * 
-	 * ÊÖ»ú²éÑ¯¿Í»§
-	 *@Ê±¼ä 2017Äê2ÔÂ20ÈÕ ÏÂÎç9:13:23
+	 * æ‰‹æœºæŸ¥è¯¢å®¢æˆ·
 	 */
 	public String findCustomerByTelephone() throws Exception{
-		logger.info("ÕıÔÚÓÃÊÖ»ú²éÑ¯¿Í»§");
+		logger.info("æ­£åœ¨ç”¨æ‰‹æœºæŸ¥è¯¢å®¢æˆ·");
 		String telephone = model.getTelephone();
 		Customer customer = customerService.findCustomerByPhonenumber(telephone);
 		String[] excludes=new String[]{ }; 
 		this.WriteObject2Json(customer, excludes);
-		logger.info("ÊÖ»ú²éÑ¯¿Í»§Íê³É¡£¡£¡£¡£¡£");
+		logger.info("æ‰‹æœºæŸ¥è¯¢å®¢æˆ·å®Œæˆã€‚ã€‚ã€‚ã€‚ã€‚");
 		return NONE;
 	}
 	
 	
 	public String add(){
-		logger.info("ÕıÔÚÌí¼Ó¹¤µ¥");
+		logger.info("æ­£åœ¨æ·»åŠ å·¥å•");
 		User user = BOSContext.getLoginUser();
 		model.setUser(user);
 		noticebillService.save(model);

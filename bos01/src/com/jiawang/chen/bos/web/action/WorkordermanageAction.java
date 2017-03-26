@@ -15,12 +15,11 @@ import com.jiawang.chen.bos.web.action.base.BaseAction;
 import com.opensymphony.xwork2.ActionContext;
 
 /**
- *<p>±êÌâ: WorkordermanageAction </p>
- *<p>ÃèÊö£º¹¤×÷µ¥¹ÜÀí </p>
+ *<p>æ ‡é¢˜: WorkordermanageAction </p>
+ *<p>æè¿°ï¼šå·¥ä½œå•ç®¡ç† </p>
  *<p>company:</p>
- * @×÷Õß  ³Â¼ÓÍû
- * @Ê±¼ä  2017Äê2ÔÂ21ÈÕ ÏÂÎç12:04:16
- *@°æ±¾ 
+ * @ä½œè€…  é™ˆåŠ æœ›
+ *@ç‰ˆæœ¬ 
  */
 @Controller
 @Scope("prototype")
@@ -30,7 +29,7 @@ public class WorkordermanageAction extends BaseAction<Workordermanage> {
 	
 	
 	public String add() throws Exception{
-		logger.info("ÕıÔÚÌí¼Ó¹¤×÷µ¥");
+		logger.info("æ­£åœ¨æ·»åŠ å·¥ä½œå•");
 		String flag = "1";
 		try{
 			workordermanageService.save(model);
@@ -40,33 +39,31 @@ public class WorkordermanageAction extends BaseAction<Workordermanage> {
 		ServletActionContext.getResponse().setContentType(
 				"text/html;charset=UTF-8");
 		ServletActionContext.getResponse().getWriter().print(flag);
-		logger.info("Ìí¼Ó¹¤×÷µ¥Íê³É¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£");
+		logger.info("æ·»åŠ å·¥ä½œå•å®Œæˆã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚");
 		return NONE;
 	}
 	
 	/**
-	 * ²éÑ¯start Îª0µÄ¹¤×÷µ¥
+	 * æŸ¥è¯¢start ä¸º0çš„å·¥ä½œå•
 	 * 
-	 *@Ê±¼ä 2017Äê2ÔÂ21ÈÕ ÏÂÎç12:08:55
 	 */
 	public String list(){
-		logger.info("ÕıÔÚ²éÑ¯start Îª0µÄ¹¤×÷µ¥");
+		logger.info("æ­£åœ¨æŸ¥è¯¢start ä¸º0çš„å·¥ä½œå•");
 		List<Workordermanage> list=workordermanageService.findListNotStart();
 		ActionContext.getContext().getValueStack().set("list", list);
-		logger.info("²éÑ¯start Îª0µÄ¹¤×÷µ¥Íê³É¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£");
+		logger.info("æŸ¥è¯¢start ä¸º0çš„å·¥ä½œå•å®Œæˆã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚");
 		return "list";
 	}
 	
 	/**
-	 * Æô¶¯ÎïÁ÷ÅäËÍÁ÷³Ì
+	 * å¯åŠ¨ç‰©æµé…é€æµç¨‹
 	 * 
-	 *@Ê±¼ä 2017Äê2ÔÂ21ÈÕ ÏÂÎç1:47:19
 	 */
 	public String start(){
-		logger.info("ÕıÔÚÆô¶¯ÎïÁ÷ÅäËÍÁ÷³Ì");
-		String id = model.getId();//¹¤×÷µ¥id
-		workordermanageService.start(id);//Æô¶¯Á÷³ÌÊµÀı
-		logger.info("Æô¶¯ÎïÁ÷ÅäËÍÁ÷³ÌÍê³É");
+		logger.info("æ­£åœ¨å¯åŠ¨ç‰©æµé…é€æµç¨‹");
+		String id = model.getId();//å·¥ä½œå•id
+		workordermanageService.start(id);//å¯åŠ¨æµç¨‹å®ä¾‹
+		logger.info("å¯åŠ¨ç‰©æµé…é€æµç¨‹å®Œæˆ");
 		return "toList";
 	}
 	

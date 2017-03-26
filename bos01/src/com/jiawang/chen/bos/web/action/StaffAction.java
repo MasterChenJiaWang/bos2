@@ -21,12 +21,11 @@ import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
 
 /**
- *<p>±êÌâ: StaffAction </p>
- *<p>ÃèÊö£º </p>
+ *<p>æ ‡é¢˜: StaffAction </p>
+ *<p>æè¿°ï¼š </p>
  *<p>company:</p>
- * @×÷Õß  ³Â¼ÓÍû
- * @Ê±¼ä  2017Äê2ÔÂ15ÈÕ ÏÂÎç7:19:08
- *@°æ±¾ 
+ * @ä½œè€…  é™ˆåŠ æœ›
+ *@ç‰ˆæœ¬ 
  */
 @Controller
 @Scope("prototype")
@@ -41,62 +40,57 @@ public class StaffAction extends BaseAction<Staff>{
 
 	
 	/**
-	 * È¡ÅÉÔ± ·ÖÒ³
+	 * å–æ´¾å‘˜ åˆ†é¡µ
 	 * 
-	 *@Ê±¼ä 2017Äê2ÔÂ16ÈÕ ÉÏÎç8:44:23
 	 */
 	public String pageQuery() throws Exception{
 		
-		logger.info("ÕıÔÚ½øĞĞÈ¡ÅÉÔ±·ÖÒ³-------");
+		logger.info("æ­£åœ¨è¿›è¡Œå–æ´¾å‘˜åˆ†é¡µ-------");
 		staffService.pageQuery(pageBean);
-		//½«PageBean¶ÔÏó×ªÎªjson·µ»Ø
+		//å°†PageBeanå¯¹è±¡è½¬ä¸ºjsonè¿”å›
 		String[] excludes=new String[]{"decidedzones","currentPage","detachedCriteria","pageSize"};
 		this.WritePageBean2Json(pageBean, excludes);
-		logger.info("È¡ÅÉÔ±·ÖÒ³³É¹¦-------");
+		logger.info("å–æ´¾å‘˜åˆ†é¡µæˆåŠŸ-------");
 		return NONE;
 	}
 	
 	/**
-	 * È¡ÅÉÔ± Ìí¼Ó
+	 * å–æ´¾å‘˜ æ·»åŠ 
 	 * 
-	 *@Ê±¼ä 2017Äê2ÔÂ16ÈÕ ÉÏÎç8:46:44
 	 */
 	public String  add(){
-		logger.info("ÕıÔÚÌí¼Ó È¡ÅÉÔ±-------");
+		logger.info("æ­£åœ¨æ·»åŠ  å–æ´¾å‘˜-------");
 		staffService.save(model);
-		logger.info("È¡ÅÉÔ±Ìí¼Ó³É¹¦-------");
+		logger.info("å–æ´¾å‘˜æ·»åŠ æˆåŠŸ-------");
 		return "list";
 	}
 	
 	/**
-	 * É¾³ıÈ¡ÅÉÔ±  ÅúÁ¿É¾³ı
+	 * åˆ é™¤å–æ´¾å‘˜  æ‰¹é‡åˆ é™¤
 	 * 
-	 *@Ê±¼ä 2017Äê2ÔÂ16ÈÕ ÉÏÎç8:50:20
 	 */
 	public String delete(){
-		logger.info("ÕıÔÚ½øĞĞÈ¡ÅÉÔ±É¾³ı-------");
+		logger.info("æ­£åœ¨è¿›è¡Œå–æ´¾å‘˜åˆ é™¤-------");
 	//	String ids = model.getId();
 		staffService.deleteBatch(ids);
-		logger.info("È¡ÅÉÔ±É¾³ı³É¹¦-------");
+		logger.info("å–æ´¾å‘˜åˆ é™¤æˆåŠŸ-------");
 		return "list";
 	}
 	
 	/**
-	 *»¹Ô­ 
-	 *@Ê±¼ä 2017Äê2ÔÂ16ÈÕ ÏÂÎç3:17:24
+	 *è¿˜åŸ 
 	 */
 	public String restore( ){
-		logger.info("ÕıÔÚ½øĞĞÈ¡ÅÉÔ±»¹Ô­-------");
+		logger.info("æ­£åœ¨è¿›è¡Œå–æ´¾å‘˜è¿˜åŸ-------");
 	//	String ids = model.getId();
 		staffService.restoreBatch(ids);
-		logger.info("È¡ÅÉÔ±»¹Ô­³É¹¦-------");
+		logger.info("å–æ´¾å‘˜è¿˜åŸæˆåŠŸ-------");
 		return "list";
 	}
 	
 	/**
-	 * ²éÑ¯
+	 * æŸ¥è¯¢
 	 * 
-	 *@Ê±¼ä 2017Äê2ÔÂ16ÈÕ ÏÂÎç3:26:21
 	 */
 	public String listajax() throws Exception{
 		 List<Staff> list = staffService.findNotDelete();

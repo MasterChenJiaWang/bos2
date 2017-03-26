@@ -23,12 +23,11 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 /**
- *<p>±êÌâ: TaskAction </p>
- *<p>ÃèÊö£º×éÈÎÎñ </p>
+ *<p>æ ‡é¢˜: TaskAction </p>
+ *<p>æè¿°ï¼šç»„ä»»åŠ¡ </p>
  *<p>company:</p>
- * @×÷Õß  ³Â¼ÓÍû
- * @Ê±¼ä  2017Äê2ÔÂ21ÈÕ ÏÂÎç1:54:26
- *@°æ±¾ 
+ * @ä½œè€…  é™ˆåŠ æœ›
+ *@ç‰ˆæœ¬ 
  */
 @Controller
 @Scope("prototype")
@@ -43,19 +42,18 @@ public class TaskAction extends ActionSupport {
 	
 	private static final Logger logger = Logger.getLogger(TaskAction.class);
 	/**
-	 * ²éÑ¯×éÈÎÎñ
+	 * æŸ¥è¯¢ç»„ä»»åŠ¡
 	 * 
-	 *@Ê±¼ä 2017Äê2ÔÂ21ÈÕ ÏÂÎç1:59:28
 	 */
 	public String findGroupTask(){
-		logger.info("ÕıÔÚ²éÑ¯×éÈÎÎñ");
+		logger.info("æ­£åœ¨æŸ¥è¯¢ç»„ä»»åŠ¡");
 		TaskQuery query = taskService.createTaskQuery();
 		String candidateUser = BOSContext.getLoginUser().getId();
-		//×éÈÎÎñ¹ıÂË
+		//ç»„ä»»åŠ¡è¿‡æ»¤
 		query.taskCandidateUser(candidateUser);
 		List<Task> list = query.list();
 		ActionContext.getContext().getValueStack().set("list", list);
-		logger.info("²éÑ¯×éÈÎÎñÍê³É¡£¡£¡£¡£¡£¡£¡£¡£¡£");
+		logger.info("æŸ¥è¯¢ç»„ä»»åŠ¡å®Œæˆã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚");
 		return "grouptasklist";
 	}
 	
@@ -70,39 +68,37 @@ public class TaskAction extends ActionSupport {
 	}
 
 	/**
-	 * @param taskId ÒªÉèÖÃµÄ taskId
+	 * @param taskId è¦è®¾ç½®çš„ taskId
 	 */
 	public void setTaskId(String taskId) {
 		this.taskId = taskId;
 	}
 
 	/**
-	 * Ê°È¡×éÈÎÎñ
+	 * æ‹¾å–ç»„ä»»åŠ¡
 	 * 
-	 *@Ê±¼ä 2017Äê2ÔÂ21ÈÕ ÏÂÎç2:07:16
 	 */
 	public String showData(){
-		logger.info("ÕıÔÚÊ°È¡×éÈÎÎñ");
+		logger.info("æ­£åœ¨æ‹¾å–ç»„ä»»åŠ¡");
 		String userId = BOSContext.getLoginUser().getId();
 		taskService.claim(taskId, userId);
-		logger.info("Ê°È¡×éÈÎÎñÍê³É¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£");
+		logger.info("æ‹¾å–ç»„ä»»åŠ¡å®Œæˆã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚");
 		return "togrouptasklist";
 	}
 	
 	/**
 	 * 
-	 * ²éÑ¯¸öÈËÈÎÎñ
-	 *@Ê±¼ä 2017Äê2ÔÂ21ÈÕ ÏÂÎç2:12:39
+	 * æŸ¥è¯¢ä¸ªäººä»»åŠ¡
 	 */
 	public String findPersonalTask(){
-		logger.info("ÕıÔÚ²éÑ¯¸öÈËÈÎÎñ");
+		logger.info("æ­£åœ¨æŸ¥è¯¢ä¸ªäººä»»åŠ¡");
 		TaskQuery query = taskService.createTaskQuery();
 		String assignee = BOSContext.getLoginUser().getId();
-		//¸öÈËÈÎÎñ¹ıÂË
+		//ä¸ªäººä»»åŠ¡è¿‡æ»¤
 		query.taskAssignee(assignee);
 		List<Task> list = query.list();
 		ActionContext.getContext().getValueStack().set("list", list);
-		logger.info("²éÑ¯¸öÈËÈÎÎñÍê³É¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£");
+		logger.info("æŸ¥è¯¢ä¸ªäººä»»åŠ¡å®Œæˆã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚");
 		return "personaltasklist";
 	}
 	
@@ -118,38 +114,37 @@ public class TaskAction extends ActionSupport {
 	}
 
 	/**
-	 * @param check ÒªÉèÖÃµÄ check
+	 * @param check è¦è®¾ç½®çš„ check
 	 */
 	public void setCheck(Integer check) {
 		this.check = check;
 	}
 
 	/**
-	 * °ìÀíÉóºË¹¤×÷µ¥ÈÎÎñ
+	 * åŠç†å®¡æ ¸å·¥ä½œå•ä»»åŠ¡
 	 * 
-	 *@Ê±¼ä 2017Äê2ÔÂ21ÈÕ ÏÂÎç2:18:45
 	 */
 	public String checkworkorderManage(){
-		logger.info("ÕıÔÚ°ìÀíÉóºË¹¤×÷µ¥ÈÎÎñ");
-		// ¸ù¾İÈÎÎñid²éÑ¯ÈÎÎñ¶ÔÏó
+		logger.info("æ­£åœ¨åŠç†å®¡æ ¸å·¥ä½œå•ä»»åŠ¡");
+		// æ ¹æ®ä»»åŠ¡idæŸ¥è¯¢ä»»åŠ¡å¯¹è±¡
 				Task task = taskService.createTaskQuery().taskId(taskId).singleResult();
-				// ¸ù¾İÈÎÎñ¶ÔÏó²éÑ¯Á÷³ÌÊµÀıid
+				// æ ¹æ®ä»»åŠ¡å¯¹è±¡æŸ¥è¯¢æµç¨‹å®ä¾‹id
 				String processInstanceId = task.getProcessInstanceId();
-				// ¸ù¾İÁ÷³ÌÊµÀıid²éÑ¯Á÷³ÌÊµÀı¶ÔÏó
+				// æ ¹æ®æµç¨‹å®ä¾‹idæŸ¥è¯¢æµç¨‹å®ä¾‹å¯¹è±¡
 				ProcessInstance processInstance = runtimeService
 						.createProcessInstanceQuery()
 						.processInstanceId(processInstanceId).singleResult();
 				String workordermanageId = processInstance.getBusinessKey();
 				Workordermanage workordermanage = workordermanageService.findById(workordermanageId);
 				if(check == null){
-					//Ìø×ªµ½ÉóºËÒ³Ãæ
-					// Ìø×ªµ½Ò»¸öÉóºË¹¤×÷µ¥Ò³Ãæ£¬Õ¹Ê¾µ±Ç°¶ÔÓ¦µÄ¹¤×÷µ¥ĞÅÏ¢
+					//è·³è½¬åˆ°å®¡æ ¸é¡µé¢
+					// è·³è½¬åˆ°ä¸€ä¸ªå®¡æ ¸å·¥ä½œå•é¡µé¢ï¼Œå±•ç¤ºå½“å‰å¯¹åº”çš„å·¥ä½œå•ä¿¡æ¯
 					ActionContext.getContext().getValueStack().set("map", workordermanage);
-					logger.info("°ìÀíÉóºË¹¤×÷µ¥ÈÎÎñ  Ê§°Ü¡¶¡¶¡¶");
+					logger.info("åŠç†å®¡æ ¸å·¥ä½œå•ä»»åŠ¡  å¤±è´¥ã€Šã€Šã€Š");
 					return "check";
 				}else{
 					workordermanageService.checkWorkordermanage(taskId,check,workordermanageId);
-					logger.info("°ìÀíÉóºË¹¤×÷µ¥ÈÎÎñÍê³É¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£");
+					logger.info("åŠç†å®¡æ ¸å·¥ä½œå•ä»»åŠ¡å®Œæˆã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚");
 					return "topersonaltasklist";
 				}
 	}
@@ -157,38 +152,35 @@ public class TaskAction extends ActionSupport {
 	
 	/**
 	 * 
-	 * °ìÀí³ö¿âÈÎÎñ
-	 *@Ê±¼ä 2017Äê2ÔÂ21ÈÕ ÏÂÎç2:34:11
+	 * åŠç†å‡ºåº“ä»»åŠ¡
 	 */
 	public String outStore(){
-		logger.info("ÕıÔÚ°ìÀí³ö¿âÈÎÎñ");
+		logger.info("æ­£åœ¨åŠç†å‡ºåº“ä»»åŠ¡");
 		taskService.complete(taskId);
-		logger.info("°ìÀí³ö¿âÈÎÎñÍê³É¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£");
+		logger.info("åŠç†å‡ºåº“ä»»åŠ¡å®Œæˆã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚");
 		return "topersonaltasklist";
 	}
 	
 	/**
-	 * °ìÀíÅäËÍÈÎÎñ
+	 * åŠç†é…é€ä»»åŠ¡
 	 * 
-	 *@Ê±¼ä 2017Äê2ÔÂ21ÈÕ ÏÂÎç2:35:53
 	 */
 	public String transferGoods(){
-		logger.info("ÕıÔÚ°ìÀíÅäËÍÈÎÎñ");
+		logger.info("æ­£åœ¨åŠç†é…é€ä»»åŠ¡");
 		taskService.complete(taskId);
 		
-		logger.info("°ìÀíÅäËÍÈÎÎñÍê³É¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£");
+		logger.info("åŠç†é…é€ä»»åŠ¡å®Œæˆã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚");
 		return "topersonaltasklist";
 	}
 	
 	/**
 	 * 
-	 * °ìÀíÇ©ÊÕÈÎÎñ
-	 *@Ê±¼ä 2017Äê2ÔÂ21ÈÕ ÏÂÎç2:36:15
+	 * åŠç†ç­¾æ”¶ä»»åŠ¡
 	 */
 	public String receive(){
-		logger.info("ÕıÔÚ°ìÀíÇ©ÊÕÈÎÎñ");
+		logger.info("æ­£åœ¨åŠç†ç­¾æ”¶ä»»åŠ¡");
 		taskService.complete(taskId);
-		logger.info("°ìÀíÇ©ÊÕÈÎÎñÍê³É¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£");
+		logger.info("åŠç†ç­¾æ”¶ä»»åŠ¡å®Œæˆã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚");
 		return "topersonaltasklist";
 	}
 }

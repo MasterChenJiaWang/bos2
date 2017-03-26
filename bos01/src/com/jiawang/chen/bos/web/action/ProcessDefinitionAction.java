@@ -24,12 +24,11 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 /**
- *<p>±êÌâ: ProcessDefinitionAction </p>
- *<p>ÃèÊö£º </p>
+ *<p>æ ‡é¢˜: ProcessDefinitionAction </p>
+ *<p>æè¿°ï¼š </p>
  *<p>company:</p>
- * @×÷Õß  ³Â¼ÓÍû
- * @Ê±¼ä  2017Äê2ÔÂ21ÈÕ ÉÏÎç9:50:07
- *@°æ±¾ 
+ * @ä½œè€…  é™ˆåŠ æœ›
+ *@ç‰ˆæœ¬ 
  */
 @Controller
 @Scope("prototype")
@@ -40,86 +39,84 @@ public class ProcessDefinitionAction extends ActionSupport {
 	
 	private static final Logger logger = Logger.getLogger(ProcessDefinitionAction.class);
 	/**
-	 * ²éÑ¯×îĞÂ°æ±¾Á÷³Ì¶¨ÒåÁĞ±íÊı¾İ
+	 * æŸ¥è¯¢æœ€æ–°ç‰ˆæœ¬æµç¨‹å®šä¹‰åˆ—è¡¨æ•°æ®
 	 * 
-	 *@Ê±¼ä 2017Äê2ÔÂ21ÈÕ ÉÏÎç9:58:18
 	 */
 	public String list(){
-		logger.info("ÕıÔÚ²éÑ¯×îĞÂ°æ±¾Á÷³Ì¶¨ÒåÁĞ±íÊı¾İ");
+		logger.info("æ­£åœ¨æŸ¥è¯¢æœ€æ–°ç‰ˆæœ¬æµç¨‹å®šä¹‰åˆ—è¡¨æ•°æ®");
 		ProcessDefinitionQuery query = repositoryService.createProcessDefinitionQuery();
-		query.latestVersion();//²éÑ¯×îĞÂ°æ±¾
-		query.orderByProcessDefinitionName().desc();//ÅÅĞò
-		List<ProcessDefinition>   list=query.list();//Ö´ĞĞ²éÑ¯
-		// Ñ¹Õ»
+		query.latestVersion();//æŸ¥è¯¢æœ€æ–°ç‰ˆæœ¬
+		query.orderByProcessDefinitionName().desc();//æ’åº
+		List<ProcessDefinition>   list=query.list();//æ‰§è¡ŒæŸ¥è¯¢
+		// å‹æ ˆ
 		ActionContext.getContext().getValueStack().set("list", list);
-		logger.info("²éÑ¯×îĞÂ°æ±¾Á÷³Ì¶¨ÒåÁĞ±íÊı¾İÍê³É¡£¡£¡£¡£¡£");
+		logger.info("æŸ¥è¯¢æœ€æ–°ç‰ˆæœ¬æµç¨‹å®šä¹‰åˆ—è¡¨æ•°æ®å®Œæˆã€‚ã€‚ã€‚ã€‚ã€‚");
 		return "list";
 	}
 	
 	
-	// ½ÓÊÕÉÏ´«µÄÎÄ¼ş
+	// æ¥æ”¶ä¸Šä¼ çš„æ–‡ä»¶
 		private File zipFile;
 
 		public void setZipFile(File zipFile) {
 			this.zipFile = zipFile;
 		}
 	/**
-	 * ²¿ÊğÁ÷³Ì¶¨Òå
+	 * éƒ¨ç½²æµç¨‹å®šä¹‰
 	 * 
-	 *@Ê±¼ä 2017Äê2ÔÂ21ÈÕ ÉÏÎç10:04:59
 	 */
 	public String deploy( ) throws FileNotFoundException{
-		logger.info("ÕıÔÚ²¿ÊğÁ÷³Ì¶¨Òå");
+		logger.info("æ­£åœ¨éƒ¨ç½²æµç¨‹å®šä¹‰");
 		DeploymentBuilder deploymentBuilder = repositoryService
 				.createDeployment();
 		deploymentBuilder.addZipInputStream(new ZipInputStream(
 				new FileInputStream(zipFile)));
 		deploymentBuilder.deploy();
 		
-		logger.info("²¿ÊğÁ÷³Ì¶¨ÒåÍê³É¡£¡£¡£¡£");
+		logger.info("éƒ¨ç½²æµç¨‹å®šä¹‰å®Œæˆã€‚ã€‚ã€‚ã€‚");
 		return "toList";
 	}
 	
 	
 	
-	//½ÓÊÕÁ÷³Ì¶¨Òåid
+	//æ¥æ”¶æµç¨‹å®šä¹‰id
 	private String id;
 	public void setId(String id) {
 		this.id = id;
 	}
 	
 	/**
-	 * Õ¹Ê¾pngÍ¼Æ¬
+	 * å±•ç¤ºpngå›¾ç‰‡
 	 */
 	public String showpng(){
-		//»ñÈ¡pngÍ¼Æ¬¶ÔÓ¦µÄÊäÈëÁ÷
+		//è·å–pngå›¾ç‰‡å¯¹åº”çš„è¾“å…¥æµ
 		InputStream pngStream = repositoryService.getProcessDiagram(id);
 		ActionContext.getContext().getValueStack().set("pngStream", pngStream);
 		return "showpng";
 	}
 	
 	/**
-	 * É¾³ıÁ÷³Ì¶¨Òå
+	 * åˆ é™¤æµç¨‹å®šä¹‰
 	 */
 	public String delete(){
 		String deltag = "0";
-		//¸ù¾İÁ÷³Ì¶¨Òåid²éÑ¯²¿Êğid
+		//æ ¹æ®æµç¨‹å®šä¹‰idæŸ¥è¯¢éƒ¨ç½²id
 		ProcessDefinitionQuery query = repositoryService.createProcessDefinitionQuery();
-		query.processDefinitionId(id);//¸ù¾İid¹ıÂË
+		query.processDefinitionId(id);//æ ¹æ®idè¿‡æ»¤
 		ProcessDefinition processDefinition = query.singleResult();
 		String deploymentId = processDefinition.getDeploymentId();
 		try{
 			repositoryService.deleteDeployment(deploymentId);
 		}catch (Exception e) {
-			//µ±Ç°ÒªÉ¾³ıµÄÁ÷³Ì¶¨ÒåÕıÔÚÊ¹ÓÃ
+			//å½“å‰è¦åˆ é™¤çš„æµç¨‹å®šä¹‰æ­£åœ¨ä½¿ç”¨
 			deltag = "1";
 			ActionContext.getContext().getValueStack().set("deltag", deltag);
 			ProcessDefinitionQuery query2 = repositoryService
 					.createProcessDefinitionQuery();
-			query2.latestVersion();// ²éÑ¯×îĞÂ°æ±¾
-			query2.orderByProcessDefinitionName().desc();// ÅÅĞò
-			List<ProcessDefinition> list = query2.list();// Ö´ĞĞ²éÑ¯
-			// Ñ¹Õ»
+			query2.latestVersion();// æŸ¥è¯¢æœ€æ–°ç‰ˆæœ¬
+			query2.orderByProcessDefinitionName().desc();// æ’åº
+			List<ProcessDefinition> list = query2.list();// æ‰§è¡ŒæŸ¥è¯¢
+			// å‹æ ˆ
 			ActionContext.getContext().getValueStack().set("list", list);
 			return "list";
 		}

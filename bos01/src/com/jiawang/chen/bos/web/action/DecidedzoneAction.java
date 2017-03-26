@@ -11,12 +11,11 @@ import com.jiawang.chen.bos.entity.Decidedzone;
 import com.jiawang.chen.bos.web.action.base.BaseAction;
 
 /**
- *<p>±êÌâ: DecidedzoneAction </p>
- *<p>ÃèÊö£º¶¨Çø </p>
+ *<p>æ ‡é¢˜: DecidedzoneAction </p>
+ *<p>æè¿°ï¼šå®šåŒº </p>
  *<p>company:</p>
- * @×÷Õß  ³Â¼ÓÍû
- * @Ê±¼ä  2017Äê2ÔÂ17ÈÕ ÏÂÎç4:29:09
- *@°æ±¾ 
+ * @ä½œè€…  é™ˆåŠ æœ›
+ *@ç‰ˆæœ¬ 
  */
 @Controller
 @Scope("prototype")
@@ -24,13 +23,13 @@ public class DecidedzoneAction extends BaseAction<Decidedzone> {
 
 	private static final Logger logger = Logger.getLogger(DecidedzoneAction.class);
 	
-	//½ÓÊÜ·ÖÇøId
+	//æ¥å—åˆ†åŒºId
 	private String[] subareaid;
 	
 	private Integer[] customerIds;
 	
 	/**
-	 * @param subareaid ÒªÉèÖÃµÄ subareaid
+	 * @param subareaid è¦è®¾ç½®çš„ subareaid
 	 */
 	public void setSubareaid(String[] subareaid) {
 		this.subareaid = subareaid;
@@ -39,36 +38,33 @@ public class DecidedzoneAction extends BaseAction<Decidedzone> {
 	/**
 	 * 
 	 * 
-	 *@Ê±¼ä 2017Äê2ÔÂ17ÈÕ ÏÂÎç4:31:27
 	 */
 	public String add(){
-		logger.info("ÕıÔÚ½øĞĞ¶¨ÇøÌí¼Ó");
+		logger.info("æ­£åœ¨è¿›è¡Œå®šåŒºæ·»åŠ ");
 		decidedzoneService.add(model,subareaid);
-		logger.info("¶¨ÇøÌí¼ÓÍê³É£¡");
+		logger.info("å®šåŒºæ·»åŠ å®Œæˆï¼");
 		return "list";
 	}
 	
 	/**
 	 * 
 	 * 
-	 *@Ê±¼ä 2017Äê2ÔÂ17ÈÕ ÏÂÎç4:41:15
 	 */
 	public String delete(){
-		logger.info("ÕıÔÚ½øĞĞ¶¨ÇøÉ¾³ı£¡");
+		logger.info("æ­£åœ¨è¿›è¡Œå®šåŒºåˆ é™¤ï¼");
 		decidedzoneService.delete(model);
-		logger.info("¶¨ÇøÉ¾³ıÍê³É£¡");
+		logger.info("å®šåŒºåˆ é™¤å®Œæˆï¼");
 		return "list";
 	}
 	
 	/**
 	 * 
 	 * 
-	 *@Ê±¼ä 2017Äê2ÔÂ17ÈÕ ÏÂÎç4:42:08
 	 */
 	public String edit(){
-		logger.info("ÕıÔÚ½øĞĞ¶¨ÇøĞŞ¸Ä£¡");
+		logger.info("æ­£åœ¨è¿›è¡Œå®šåŒºä¿®æ”¹ï¼");
 		decidedzoneService.edit(model);
-		logger.info("¶¨ÇøĞŞ¸ÄÍê³É£¡");
+		logger.info("å®šåŒºä¿®æ”¹å®Œæˆï¼");
 		return "list";
 	}
 	
