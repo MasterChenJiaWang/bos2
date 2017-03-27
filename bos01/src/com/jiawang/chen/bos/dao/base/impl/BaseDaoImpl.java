@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -19,12 +20,16 @@ import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Projection;
 import org.hibernate.criterion.Projections;
+import org.hibernate.internal.CriteriaImpl;
+import org.hibernate.transform.ResultTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
 
 import com.jiawang.chen.bos.dao.base.IBaseDao;
 import com.jiawang.chen.bos.web.utils.PageBean;
+import com.jiawang.chen.bos.web.utils.ReflectionUtils;
 
 /**
   *<p>标题: BaseDaoImpl </p>
@@ -180,7 +185,7 @@ public class BaseDaoImpl<T> implements IBaseDao<T> {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public T get(String hql) {
+	public T getBySql(String hql) {
 		Query q = this.getCurrentSession().createQuery(hql);
 		@SuppressWarnings("unchecked")
 		List<T> l = q.list();
@@ -283,7 +288,7 @@ public class BaseDaoImpl<T> implements IBaseDao<T> {
 	  *统计数目
 	 */
 	@Override
-	public long count(String hql) {
+	public Long count(String hql) {
 
 		return (Long)this.getCurrentSession().createQuery(hql).uniqueResult();
 	}
@@ -292,9 +297,9 @@ public class BaseDaoImpl<T> implements IBaseDao<T> {
 	 *统计数目
 	 */
 	@Override
-	public int getcount(String hql) {
+	public long  getcount(String hql) {
 		
-		return (Integer)this.getCurrentSession().createQuery(hql).uniqueResult();
+		return (Long )this.getCurrentSession().createQuery(hql).uniqueResult();
 	}
 
 	/* 
@@ -432,14 +437,86 @@ public class BaseDaoImpl<T> implements IBaseDao<T> {
 		return ((BigInteger) q.uniqueResult()).longValue();
 	}
 
+//	public void pageQuery(PageBean pageBean) {
+//		String hql1="from  "+entityClass.getSimpleName();
+//		String hql2="select count(*)  from   "+entityClass.getSimpleName();
+//		int currentPage = pageBean.getCurrentPage();//获取当前页
+//    	int pageSize = pageBean.getPageSize();//获取每页显示的数量
+//    	Long total = this.getcount(hql2);
+//		List<T> list = this.find(hql1, currentPage, pageSize);
+//		pageBean.setTotal(total.intValue());
+//		pageBean.setRows(list);
+//	}
+
 	public void pageQuery(PageBean pageBean) {
-		String hql="from"+entityClass.getSimpleName();
 		int currentPage = pageBean.getCurrentPage();//获取当前页
     	int pageSize = pageBean.getPageSize();//获取每页显示的数量
-		List<T> list = this.find(hql, currentPage, pageSize);
-		pageBean.setRows(list);
+		DetachedCriteria detachedCriteria = pageBean.getDetachedCriteria();
+		Criteria criteria= detachedCriteria.getExecutableCriteria(this.getCurrentSession());
+		Long total = (Long) criteria.setProjection(Projections.rowCount())
+                .uniqueResult();
+        criteria.setProjection(null);
+        criteria.setFirstResult( (currentPage - 1) * pageSize);  
+        criteria.setMaxResults(pageSize);  
+  
+        List  list = criteria.list();  
+		 pageBean.setTotal(total.intValue());//设置总数量
+		 pageBean.setRows(list);
+		
 	}
-
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+//	CriteriaImpl impl = (CriteriaImpl) c;  
+//    Projection projection = impl.getProjection();  
+//    ResultTransformer transformer = impl.getResultTransformer();  
+//
+//      
+//    List<CriteriaImpl.OrderEntry> orderEntries = (List<CriteriaImpl.OrderEntry>) ReflectionUtils.getFieldValue(impl, "orderEntries");  
+//    ReflectionUtils.setFieldValue(impl, "orderEntries", new ArrayList<CriteriaImpl.OrderEntry>());  
+//      
+//      
+//    // 执行Count查询  
+//    c.setResultTransformer(CriteriaImpl.DISTINCT_ROOT_ENTITY);  
+//   Long total = (Long) c.setProjection(Projections.countDistinct("id")).uniqueResult();  
+//  
+//    // 将之前的Projection和OrderBy条件重新设回去  
+//    c.setProjection(projection);  
+//    c.setResultTransformer(transformer);  
+//    ReflectionUtils.setFieldValue(impl, "orderEntries", orderEntries);  
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+////		CriteriaImpl impl = (CriteriaImpl) criteria;  
+////		criteria.setProjection(arg0)
+//		criteria.setProjection(Projections.rowCount());
+//		 Long total = (Long) criteria.setProjection(Projections.rowCount())
+//	                .uniqueResult();
+//		//修改sql的形式为select * from ....
+//		 criteria.setProjection(null);
+//		//重置表和类的映射关系
+//		 criteria.setResultTransformer(DetachedCriteria.ROOT_ENTITY);
+//		 criteria.setFirstResult((currentPage - 1) *pageSize);
+//		 criteria.setMaxResults(pageSize);
+//		 List rows= criteria.list();
+//		 pageBean.setTotal(total.intValue());//设置总数量
+//		 pageBean.setRows(rows);
 	
 	
 

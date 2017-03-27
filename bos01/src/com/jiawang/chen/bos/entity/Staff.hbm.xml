@@ -37,6 +37,6 @@
     	UPDATE Staff SET deltag = '1' WHERE id = ?
     </query>
       <query name="staff.restore">
-    	UPDATE Staff SET deltag = '0' WHERE id = ?
+    	UPDATE Staff SET deltag = '0'  WHERE id = ?
     </query>
 </hibernate-mapping>

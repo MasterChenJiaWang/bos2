@@ -27,7 +27,9 @@ public class WorkordermanageAction extends BaseAction<Workordermanage> {
 
 	private static final Logger logger = Logger.getLogger(WorkordermanageAction.class);
 	
-	
+	/**
+	 * 添加工作单
+	 */
 	public String add() throws Exception{
 		logger.info("正在添加工作单");
 		String flag = "1";
@@ -45,7 +47,7 @@ public class WorkordermanageAction extends BaseAction<Workordermanage> {
 	
 	/**
 	 * 查询start 为0的工作单
-	 * 
+	 * 查询没有启动流程实例的工作单数据
 	 */
 	public String list(){
 		logger.info("正在查询start 为0的工作单");

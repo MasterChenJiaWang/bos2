@@ -14,7 +14,7 @@ import org.hibernate.criterion.DetachedCriteria;
  * @作者  陈加望
  *@版本 
  */
-public class PageBean {
+public class PageBean<T> {
 	private int currentPage;//当前页面
 	private int pageSize;//每页显示数量
 	private int total=0;//总记录数

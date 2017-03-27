@@ -43,7 +43,7 @@ public class WorkordermanageServiceImpl  implements IWorkordermanageService{
 	@Resource
 	private HistoryService historyService;
 	/* 
-	 *
+	 *查询没有启动流程实例的工作单
 	 */
 	@Override
 	public List<Workordermanage> findListNotStart() {
@@ -59,6 +59,9 @@ public class WorkordermanageServiceImpl  implements IWorkordermanageService{
 //		return workordermanageDao.findByCriteria(detachedCriteria);
 	}
 
+	/**
+	 * 启动物流配送流程
+	 */
 	@Override
 	public void start(String id) {
 		Workordermanage workordermanage = workordermanageDao.get(id);

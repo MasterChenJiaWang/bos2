@@ -35,7 +35,7 @@ public interface IBaseDao<T> {
 	
 	public T get(Serializable id);
 	
-	public T get(String hql);
+	public T getBySql(String hql);
 	
 	public T get(String hql,Map<String, Object> params);
 	
@@ -54,9 +54,9 @@ public interface IBaseDao<T> {
 	
 	public void  pageQuery(PageBean pageBean);
 	
-	public long count(String hql);
+	public Long count(String hql);
 	
-	public int getcount(String hql);
+	public long getcount(String hql);
 	
 	public long count(String hql, Map<String, Object> params);
 	

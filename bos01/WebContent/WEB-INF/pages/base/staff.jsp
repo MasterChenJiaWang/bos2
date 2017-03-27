@@ -64,13 +64,14 @@
 		if(rows.length==0){
 			$.messager.alert("提示信息","请选择需要还原的记录！","warning");
 		}else{
-			var array=new array();
+			var array=new Array();
 			for(var i=0;i<rows.length;i++){
 				var id=rows[i].id;
 				array.push(id);
 			}
 			var ids=array.join(",");
 			//发送请求，传递ids参数
+			   console.log("ids: " + ids);//测试用
 			window.location.href='${pageContext.request.contextPath}/staffAction_restore.action?ids='+ids;
 		}
 	}

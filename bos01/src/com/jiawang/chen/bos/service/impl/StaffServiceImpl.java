@@ -95,7 +95,7 @@ public class StaffServiceImpl implements IStaffService{
 	@Override
 	public Staff findById(String id) {
 		
-		return staffDao.get(id);
+		return staffDao.get(Staff.class,id);
 		
 	}
 
@@ -106,14 +106,10 @@ public class StaffServiceImpl implements IStaffService{
 	public void restoreBatch(String ids) {
 		String[] idStaff = ids.split(",");
 		if(idStaff!=null && idStaff.length>0){
-			for(String id:idStaff){
-				Staff staff = staffDao.get(id);
-				String deltag = staff.getDeltag();
-				if(deltag=="1"){
+			for(String  id:idStaff){
 					staffDao.executeUpdate("staff.restore", id);
-				}
-				
 			}
+		
 		}
 	}
 
@@ -123,7 +119,7 @@ public class StaffServiceImpl implements IStaffService{
 	@Override
 	public List<Staff> findNotDelete() {
 		
-		String deltag="0";
+		String deltag="1";
 		String hql="select * from Staff  s where s.deltag=:deltag ";
 		Map<String,Object> map=new HashMap<String, Object>();
 		map.put("deltag", deltag);

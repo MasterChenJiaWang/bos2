@@ -29,7 +29,7 @@ public class UserDaoImpl extends BaseDaoImpl<User> implements IUserDao {
 	@Override
 	public User loginByUserAndPassword(String username, String password) {
 //		String hql="from User u where u.username='"+username+"' and u.password='"+password+"'";
-		String hql="from User u where u.username=? and u.password=?";
+		String hql="from User u where u.username=:username  and u.password=:passowrd";
 		Map<String, Object> map= new HashMap<String, Object>();
 		map.put("username", username);
 		map.put("password", password);
@@ -45,7 +45,7 @@ public class UserDaoImpl extends BaseDaoImpl<User> implements IUserDao {
 	 */
 	@Override
 	public User findUserByUsername(String username) {
-		String hql = "FROM User u WHERE u.username = ? ";
+		String hql = "FROM User u WHERE u.username =:username ";
 		Map<String, Object> map= new HashMap<String, Object>();
 		map.put("username", username);
 		List<User> list = this.find( hql, map);
