@@ -35,7 +35,7 @@
 					text : '添加权限',
 					iconCls : 'icon-add',
 					handler : function(){
-						location.href='${pageContext.request.contextPath}/page_admin_function.action';
+						location.href='${pageContext.request.contextPath}/page_admin_function_add.action';
 					}
 				}           
 			],

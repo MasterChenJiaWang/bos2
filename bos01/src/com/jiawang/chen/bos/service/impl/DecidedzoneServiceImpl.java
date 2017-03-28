@@ -68,4 +68,11 @@ public class DecidedzoneServiceImpl implements IDecidedzoneService {
 		decidedzoneDao.pageQuery(pageBean);
 	}
 
+	@Override
+	public void deleteBatch(String ids) {
+		String[] idSubarea = ids.split(",");
+		for(String id:idSubarea){
+			decidedzoneDao.delete(id);
+		}
+	}
 }

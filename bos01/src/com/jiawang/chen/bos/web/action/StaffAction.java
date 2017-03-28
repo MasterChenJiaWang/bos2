@@ -96,6 +96,7 @@ public class StaffAction extends BaseAction<Staff>{
 		 List<Staff> list = staffService.findNotDelete();
 		 String[] excludes=new String[]{"decidedzones"};
 		this .WriteList2Json(list, excludes);
+		System.out.println(list);
 			return NONE;
 	}
 }

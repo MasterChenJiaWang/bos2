@@ -27,4 +27,9 @@ public interface IRegionService {
 
 	
 	public void update(Region region);
+
+	/**
+	 * 
+	 */
+	public void deleteBatch(String ids);
 }

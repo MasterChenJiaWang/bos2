@@ -145,6 +145,18 @@ public class BaseDaoImpl<T> implements IBaseDao<T> {
 		}
 	}
 
+	
+	
+	public List<T> findByNameQuery(String queryName,Object... objects) {
+		Query query = this.getCurrentSession().getNamedQuery(queryName);
+		// 为HQL语句中的？赋值
+				int i = 0;
+				for (Object arg : objects) {
+					query.setParameter(i++, arg);
+				}
+		List<T> list = query.list();
+		return list;
+	}
 	/**
 	 * 通用更新方法
 	 */
@@ -224,6 +236,9 @@ public class BaseDaoImpl<T> implements IBaseDao<T> {
 		return this.getCurrentSession().createQuery(hql).list();
 	}
 
+	public List<T> find( String hql) {
+		return this.getCurrentSession().createQuery(hql).list();
+	}
 	/* 
 	 *获得分页后的对象列表
 	 */

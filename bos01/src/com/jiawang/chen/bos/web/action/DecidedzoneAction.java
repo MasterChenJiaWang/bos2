@@ -28,6 +28,11 @@ public class DecidedzoneAction extends BaseAction<Decidedzone> {
 	
 	private Integer[] customerIds;
 	
+	private String ids;
+	public void setIds(String ids) {
+		this.ids = ids;
+	}
+	
 	/**
 	 * @param subareaid 要设置的 subareaid
 	 */
@@ -52,7 +57,7 @@ public class DecidedzoneAction extends BaseAction<Decidedzone> {
 	 */
 	public String delete(){
 		logger.info("正在进行定区删除！");
-		decidedzoneService.delete(model);
+		decidedzoneService.deleteBatch(ids);
 		logger.info("定区删除完成！");
 		return "list";
 	}

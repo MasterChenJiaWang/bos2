@@ -77,21 +77,31 @@ public class SubareaServiceImpl implements ISubareaService {
 
 	@Override
 	public List<Subarea> findListNotAssociation() {
-		Decidedzone decidedzone = new Decidedzone(); 
-		if (decidedzone != null && !decidedzone.equals("")) {
-			String hql="select * from Subarea  s where s.decidedzone=:decidedzone ";
-			Map<String,Object> map=new HashMap<String, Object>();
-			map.put("decidedzone",decidedzone);
-			List<Subarea> list = subareaDao.find(hql, map);
-			return list;
-		}
-		return null;
-		
-		
+		List<Subarea> list = subareaDao.findByNameQuery("Subarea.findnoassoriations");
+		return list;
 		
 //		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Subarea.class);
 //		detachedCriteria.add(Restrictions.isNull("decidedzone"));
 //		return subareaDao.findByCriteria(detachedCriteria);
+	}
+
+	/* 
+	 *
+	 */
+	@Override
+	public void saveBacth(List<Subarea> list) {
+		subareaDao.batchSave(list);
+	}
+
+	/* 
+	 *
+	 */
+	@Override
+	public void deleteBatch(String ids) {
+		String[] idSubarea = ids.split(",");
+		for(String id:idSubarea){
+			subareaDao.delete(id);
+		}
 	}
 
 }

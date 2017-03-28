@@ -1,7 +1,7 @@
 package com.jiawang.chen.bos.entity;
 /**
  * 分区实体
- * @author zhaoqx
+ * @author 
  *
  */
 public class Subarea implements java.io.Serializable {
@@ -20,7 +20,6 @@ public class Subarea implements java.io.Serializable {
 	/**
 	 * 修改decidedzone.jsp中的添加分区 字段中的id  为subareaid,以免冲突
 	 * 
-	 *@时间 2017年2月17日 下午4:19:24
 	 */
 	public String getSubareaid(){
 		return id;

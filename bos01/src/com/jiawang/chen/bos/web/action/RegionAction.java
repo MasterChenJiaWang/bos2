@@ -66,6 +66,20 @@ public class RegionAction extends BaseAction<Region> {
 		return "list";
 	}
 	
+	private String ids;
+	public void setIds(String ids) {
+		this.ids = ids;
+	}
+	/**
+	 * 
+	 *删除
+	 */
+	public String delete(){
+		logger.info("正在进行区域删除-------");
+		regionService.deleteBatch(ids);
+		logger.info("区域修改成功-------");
+		return "list";
+	}
 	
 	/**
 	 * 导入

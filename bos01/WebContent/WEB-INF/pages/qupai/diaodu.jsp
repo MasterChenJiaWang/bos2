@@ -35,8 +35,17 @@
 				text : '人工调度',
 				iconCls : 'icon-edit',
 				handler : function() {
-					// 弹出窗口
-					$("#diaoduWindow").window('open');
+					var row = $("#grid").datagrid('getSelected'); // 获得选中行
+					if(row == null){
+						// 未选中
+						$.messager.alert('警告','进行调度前，必须先选中一条通知单记录','warning');
+					}else{
+						// 选中， 将数据显示
+						$("#noticebillId").val(row.id);
+						$("#noticebillIdView").html(row.id);
+						// 弹出窗口
+						$("#diaoduWindow").window('open');
+					}
 				}
 			} ],
 			columns : [ [ {
@@ -72,7 +81,15 @@
 
 		// 点击保存按钮，为通知单 进行分单 --- 生成工单
 		$("#save").click(function() {
-
+			$("#diaoduForm").form('submit',{
+				url : '${pageContext.request.contextPath}/noticebill_diaodu.action',
+				success : function(data){
+					$("#diaoduWindow").window('close');
+					$("#noticebillId").val('');
+					$("#noticebillIdView").html('');
+					$("#grid").datagrid('reload');
+				}
+			});
 		});
 	});
 </script>
@@ -106,7 +123,7 @@
 						<td>选择取派员</td>
 						<td><input class="easyui-combobox" required="true"
 							name="staff.id"
-							data-options="valueField:'id',textField:'name',url:'${pageContext.request.contextPath }/staff_ajaxlist.action'" />
+							data-options="valueField:'id',textField:'name',url:'${pageContext.request.contextPath }/staffAction_listajax.action'" />
 						</td>
 					</tr>
 				</table>

@@ -28,6 +28,8 @@ public interface IBaseDao<T> {
 	public void delete(T entity);
 	public void delete(Serializable id);
 	public void update(T entity);
+	
+	public List<T> findByNameQuery(String queryName,Object... objects);
 	public void executeUpdate(String queryName, Object... objects);
 	public void saveUpdate(T entity);
 	
@@ -40,7 +42,7 @@ public interface IBaseDao<T> {
 	public T get(String hql,Map<String, Object> params);
 	
 	public List<T> find();
-	
+	public List<T> find( String hql);
 	
 	public List<T> find(String hql, Map<String, Object> params);
 	

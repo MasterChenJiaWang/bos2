@@ -42,7 +42,22 @@
 	}
 	
 	function doDelete(){
-		alert("删除...");
+		//获得选中的行
+		var rows = $("#grid").datagrid("getSelections");
+		if(rows.length == 0){
+			//没有选中，提示
+			$.messager.alert("提示信息","请选择需要删除的记录！","warning");
+		}else{
+			var array = new Array();
+			//选中了记录,获取选中行的id
+			for(var i=0;i<rows.length;i++){
+				var id = rows[i].id;
+				array.push(id);
+			}
+			var ids = array.join(",");
+			//发送请求，传递ids参数
+			window.location.href = '${pageContext.request.contextPath}/regionAction_delete.action?ids='+ids;
+		}
 	}
 	
 	//工具栏
@@ -186,7 +201,7 @@
 	<div region="center" border="false">
     	<table id="grid"></table>
 	</div>
-	<div class="easyui-window" title="区域添加修改" id="addRegionWindow" collapsible="false" minimizable="false" maximizable="false" style="top:20px;left:200px">
+	<div class="easyui-window" title="区域添加" id="addRegionWindow" collapsible="false" minimizable="false" maximizable="false" style="top:20px;left:200px">
 		<div region="north" style="height:31px;overflow:hidden;" split="false" border="false" >
 			<div class="datagrid-toolbar">
 				<a id="save" icon="icon-save" href="#" class="easyui-linkbutton" plain="true" >保存</a>
@@ -194,9 +209,9 @@
 					<script type="text/javascript">
 							$(function(){
 									$("#save").click(function(){
-										var r=$("#addRegionWindow").form("validate");
+										var r=$("#addRegionForm").form("validate");
 										if(r){
-											$("#addRegionWindow").submit();
+											$("#addRegionForm").submit();
 										}
 									});
 							});
@@ -249,14 +264,15 @@
 	<div class="easyui-window" title="区域修改" id="editRegionWindow" collapsible="false" minimizable="false" maximizable="false" style="top:20px;left:200px">
 		<div region="north" style="height:31px;overflow:hidden;" split="false" border="false" >
 			<div class="datagrid-toolbar">
-				<a id="save" icon="icon-save" href="#" class="easyui-linkbutton" plain="true" >保存</a>
+				<a id="edit" icon="icon-save" href="#" class="easyui-linkbutton" plain="true" >保存</a>
 				
 					<script type="text/javascript">
 							$(function(){
-									$("#save").click(function(){
-										var r=$("#editRegionWindow").form("validate");
+								
+									$("#edit").click(function(){
+										var r=$("#editRegionForm").form("validate");
 										if(r){
-											$("#editRegionWindow").submit();
+											$("#editRegionForm").submit();
 										}
 									});
 							});
@@ -266,6 +282,7 @@
 		<div region="center" style="overflow:auto;padding:5px;" border="false">
 			
 			<form id="editRegionForm"  action="${pageContext.request.contextPath}/regionAction_edit.action" method="post">
+				<input type="hidden" name="id">
 				<table class="table-edit" width="80%" align="center" >
 					<tr class="title">
 						<td colspan="2">区域信息</td>

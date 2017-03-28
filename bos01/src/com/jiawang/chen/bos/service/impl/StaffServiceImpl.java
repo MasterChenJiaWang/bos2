@@ -119,11 +119,9 @@ public class StaffServiceImpl implements IStaffService{
 	@Override
 	public List<Staff> findNotDelete() {
 		
-		String deltag="1";
-		String hql="select * from Staff  s where s.deltag=:deltag ";
-		Map<String,Object> map=new HashMap<String, Object>();
-		map.put("deltag", deltag);
-		List<Staff> list = staffDao.find(hql, map);
+		String hql=" from Staff where deltag='0' ";
+		List<Staff> list = staffDao.find(hql);
+		System.out.println(list);
 		return list;
 //		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Staff.class);
 //		detachedCriteria.add(Restrictions.ne("deltag","1"));
